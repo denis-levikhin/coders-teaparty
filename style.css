@@ -1,0 +1,77 @@
+/*
+Theme Name: Coders Teaparty
+Author: Sova
+Author URI: https://equestria.social/@graymouse
+Description: Simple custom theme for Coders Teaparty Game Development team
+Version: 1.0
+License: GNU General Public License v3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+*/
+
+/* =============== GENERAL STYLES =============== */
+
+@font-face {
+  	font-family: "Alegreya Sans", sans-serif;
+  	font-style: normal;
+}
+
+:root {
+	--default-font-family: "Alegreya Sans";
+	--link-color: #71AD2B;
+	--hover-link-color: #539B00; 
+}
+
+body {
+	font-family: var(--default-font-family);
+	margin: 0;
+}
+
+a {
+  	text-decoration: none;
+  	color: var(--link-color);
+}
+
+a:visited {
+  	color: #EE6A9D;
+}
+
+a:hover {
+  	color: var(--hover-link-color);
+}
+
+a:visited:hover {
+  	color: #EE3B80;
+}
+
+.ignore-visited a {
+	color: var(--link-color);
+}
+
+.ignore-visited a:hover {
+	color: var(--hover-link-color);
+}
+
+/* =============== HEADER STYLES =============== */
+
+/* Main website navigation might be in header-level-1 on some pages, so don't specify the level, thought it is header-level-2 by default */
+header .website-main-navigation ul {
+  	list-style: none;
+  	display: flex;
+  	justify-content: center;
+	margin: 0;
+}
+
+header .website-main-navigation li {
+  	padding: 0.5rem;
+}
+
+header .website-main-navigation a {
+  	font-weight: bold;
+  	font-size: 18px;
+}
+
+header .header-level-2 {
+  	border-bottom: 3px double #72B12A;
+}
+
+/* =============== END OF HEADER STYLES =============== */
