@@ -17,9 +17,13 @@
 		</div>
 		<div class="header-level-2">
 			<div class="website-main-navigation ignore-visited">
-				<?php wp_nav_menu( 
-					array( 'header-menu' => 'header-menu' ) ); 
-				?>
+				<div class="area-left">
+					<?php wp_nav_menu( array( 'theme_location' => 'header-menu-left' ) ); ?>
+				</div>
+				<div class="area-center"></div>
+				<div class="area-right">
+					<?php wp_nav_menu( array( 'theme_location' => 'header-menu-right' ) ); ?>
+				</div>
 			</div>
 		</div>
 	</header>
