@@ -1,0 +1,94 @@
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	background-color: #eadbc9;
+}
+
+@media only screen and (min-width: 1024px) {
+	.sidebar {
+		flex-grow: 1;
+		flex-basis: 375px;
+		min-width: 350px;        
+		max-width: 400px;
+		position: relative;
+	}
+}
+
+#sidebar-primary .website-main-navigation {
+	margin: 0;
+	text-align: left;
+	list-style: none;
+	padding-left: 1.25em;
+}
+
+#sidebar-primary .website-main-navigation li {
+	padding-top: .75em;
+}
+
+#sidebar-primary .website-main-navigation a {
+	font-size: 18px;
+	display: block;
+	align-content: center;
+}
+
+.sidebar .searchform > div {
+	display: flex;
+	flex-direction: column;
+	gap: .5em;
+}
+
+.sidebar .searchform .screen-reader-text {
+	display: none;
+}
+
+.sidebar-level-1 {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	background-color: #34315b;
+	background-image: url("../media/floating-cogs.svg");
+	text-shadow: 1px 1px firebrick;
+}
+
+.sidebar-level-1 .website-title {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.sidebar-level-2 {
+	background-color: #eadbc9;
+	padding: 2rem;
+}
+
+.sidebar-level-2 li {
+	display: flex;
+	align-content: baseline;
+}
+
+.sidebar-level-2 ul a::before {
+	content: url("../media/icons/cup-of-tea.png");
+	padding-right: .25em;
+}
+
+.sidebar-level-3 {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding-top: 1.75em;
+	padding-bottom: 1.75em;
+	background-color: #34315b;
+	background-image: url("../media/floating-cogs.svg");
+	text-shadow: 1px 1px firebrick;
+}
+
+footer {
+	/*TODO replace with variable something like --website-main-color*/
+	font-weight: bold;
+	font-family: "Philosopher", sans-serif;
+	font-size: 18px;
+	color: #6fa329;
+	text-align: center;
+}
+

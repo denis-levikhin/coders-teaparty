@@ -11,95 +11,201 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 /* =============== GENERAL STYLES =============== */
 @font-face {
 	font-family: 'Abril Fatface';
-	src:  url('assets/fonts/abril-fatface/AbrilFatface-Regular.ttf') format('truetype')
+	src: url('assets/fonts/abril-fatface/AbrilFatface-Regular.ttf') format('truetype')
 }
 
 @font-face {
-  	font-family: "Alegreya Sans", sans-serif;
-  	font-style: normal;
+	font-family: 'Poiret One';
+	src: url('assets/fonts/Poiret_One/PoiretOne-Regular.ttf') format('truetype')
+}
+
+/* Variables only */
+:root {
+	--default-font-family: "Comfortaa";
+	--link-color: #AFC696;
+	/* matcha tea color */
+	--hover-link-color: #D889A7;
+	/* raspberry-like */
+	--website--max-width: 1333px;
+	--footer-height: 5rem;
 }
 
 :root {
-	--default-font-family: "Alegreya Sans";
-	--link-color: #71AD2B;
-	--hover-link-color: #539B00; 
+	background-color: #091635;
+	/* Pattern by Lea Verou https://projects.verou.me/css3patterns/#starry-night */
+	background-image:
+		radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+		radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+		radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+		radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+	background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+	background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
 }
 
-html, body {
+html,
+body {
 	font-family: var(--default-font-family) !important;
 	margin: 0;
+	/* remove default browser margins */
+}
+
+body {
+	margin: 0 auto;
+	max-width: var(--website--max-width);
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 ul.menu {
 	margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Abril Fatface', sans-serif;
+/*TODO: make website title h1, remove Amatic SC from h2*/
+h1,
+h2 {
+	font-family: 'Poiret One';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-align: inherit;
+	font-optical-sizing: auto;
+	font-weight: 700;
+}
+
+:is(h3, h4, h5, h6) {
+	letter-spacing: 0.075em;
+}
+
+h1 {
+	color: #6fa329;
+	font-size: 72px;
+	text-shadow: 1px 0px lightsteelblue;
+}
+
+h2 {
+	color: #6fa329;
+	font-size: 42px;
+	text-shadow: 1px 0px lightsteelblue;
 }
 
 a {
-  	text-decoration: none;
-  	color: var(--link-color);
-}
-
-a:visited {
-  	color: #EE6A9D;
+	text-decoration: none;
+	color: var(--link-color);
+	display: inline-block;
+	padding-bottom: .25em;
+	position: relative;
 }
 
 a:hover {
-  	color: var(--hover-link-color);
-}
-
-a:visited:hover {
-  	color: #EE3B80;
-}
-
-.ignore-visited a {
-	color: var(--link-color);
-}
-
-.ignore-visited a:hover {
 	color: var(--hover-link-color);
 }
 
-/* =============== HEADER STYLES =============== */
+a:after {
+	background: none repeat scroll 0 0 transparent;
+	bottom: 0;
+	content: "";
+	display: block;
+	height: 2px;
+	background: var(--hover-link-color);
+	transition: all 0.3s ease 0s, left 0.3s ease 0s;
+	width: 0;  
+	margin-top: .25em;
+}
+h1 > a:after, 
+h2 > a:after {
+	display: none;
+}
 
-/* Main website navigation might be in header-level-1 on some pages, so don't specify the level, thought it is header-level-2 by default */
-header .website-main-navigation {
-	background-color: #55402d;
+a:hover:after {
+	width: 100%;
+	left: 0;
+}
+
+
+input[type="text"] {
+	padding: 0.75em;
+	font-size: 16px;
+	font-family: var(--default-font-family);
+	font-weight: lighter;
+}
+
+input[type="text"],
+input[type="password"] {
+	border: none;
+	outline: none;
+	border-bottom: 1px solid black;
+}
+
+form input[type="submit"] {
+	padding: .75em;
+	text-transform: uppercase;
+	font-family: "Poiret One", sans-serif;
+	background: var(--link-color);
+	border: none;
+	border-radius: 5px;
+}
+
+form input[type="submit"]:hover {
+	background-color: coral;
+	cursor: pointer;
+	background: var(--hover-link-color);
+}
+
+.text-centered {
 	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
 }
 
-header .website-main-navigation ul.menu {
-  	list-style: none;
-  	display: flex;
-  	justify-content: center;
-	margin: 0;
-}
+/* === CONTENT STYLES === */
 
-header .website-main-navigation li {
-  	padding: 0.5rem;
-}
-
-header .website-main-navigation a {
-	font-family: 'Abril Fatface';
-	font-weight: bold;
-  	font-size: 20px;
-  	line-height: 2.5em;
-	border-bottom: 2px dotted #72B12A;
-}
-
-header .header-level-2 {
-  	border-bottom: 3px double #72B12A;
-}
-
-header .website-main-navigation .area-left,
-header .website-main-navigation .area-center,
-header .website-main-navigation .area-right {
-	max-width: 33.3%;
+.content-wrap {
+	background-color: #f0eae2;  display: grid;
+	grid-template-columns: 1fr 5fr;
 	flex-grow: 1;
-	border: 1px solid green;
-  }
+}
 
-/* =============== END OF HEADER STYLES =============== */
+.content-area {
+	padding: 2em;
+}
+
+.content-area h4>a::before {
+	content: "#";
+	opacity: 0;
+	margin-left: -1em;
+	transition: all 0.25s;
+}
+
+.content-area h4>a:hover::before {
+	opacity: 1;
+	margin-left: 0;
+}
+
+.error-message,
+.success-message {
+	padding: 1em;
+	display: block;
+	max-width: 50%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.error-message {
+	background-color: pink;
+}
+
+.success-message {
+	background-color: lightgreen;
+}

@@ -1,4 +1,16 @@
 <?php get_header(); ?>
-<?php if( !is_front_page() ) the_title(); ?>
-<?php the_content();?>
+<main class="content-wrap">
+  <?php get_sidebar( 'primary' ); ?>
+  <section class="content-area content-thin">
+    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+        <article class="article-full">
+        <?php the_content(); ?>
+        </article>
+    <?php endwhile; else : ?>
+          <article>
+            <p>No such posts!</p>
+          </article>
+    <?php endif; ?>
+  </section>
+</main>
 <?php get_footer(); ?>

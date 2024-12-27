@@ -8,22 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+	
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-	<header>
-		<div class="header-level-1">
-		</div>
-		<div class="header-level-2">
-			<div class="website-main-navigation ignore-visited">
-				<div class="area-left">
-					<?php wp_nav_menu( array( 'theme_location' => 'header-menu-left' ) ); ?>
-				</div>
-				<div class="area-center"></div>
-				<div class="area-right">
-					<?php wp_nav_menu( array( 'theme_location' => 'header-menu-right' ) ); ?>
-				</div>
-			</div>
-		</div>
-	</header>
