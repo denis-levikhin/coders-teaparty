@@ -22,10 +22,12 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 /* Variables only */
 :root {
 	--default-font-family: "Comfortaa";
-	--link-color: #AFC696;
 	/* matcha tea color */
-	--hover-link-color: #D889A7;
+	--button-color: #AFC696;
+	--button-hover-color: #D889A7;
+	--link-color: steelblue; 
 	/* raspberry-like */
+	--link-hover-color: #D889A7;
 	--website--max-width: 1333px;
 	--footer-height: 5rem;
 }
@@ -107,30 +109,33 @@ a {
 }
 
 a:hover {
-	color: var(--hover-link-color);
+	color: var(--link-hover-color);
 }
 
-a:after {
+a::after {
 	background: none repeat scroll 0 0 transparent;
 	bottom: 0;
 	content: "";
 	display: block;
-	height: 2px;
-	background: var(--hover-link-color);
-	transition: all 0.3s ease 0s, left 0.3s ease 0s;
-	width: 0;  
-	margin-top: .25em;
+	height: 1.5em;
+	background: var(--link-hover-color);
+	transition: all 0.25s ease 0s, left 0.25s ease 0s;
+	width: 0;
+	position: absolute;
+	top: 0;
+	opacity: .15;
+	margin-top: -.25em;
+	left: -.5em;
 }
+  
+a:hover::after {
+	width: calc(100% + 1em);
+}
+
 h1 > a:after, 
 h2 > a:after {
 	display: none;
 }
-
-a:hover:after {
-	width: 100%;
-	left: 0;
-}
-
 
 input[type="text"] {
 	padding: 0.75em;
@@ -143,22 +148,21 @@ input[type="text"],
 input[type="password"] {
 	border: none;
 	outline: none;
-	border-bottom: 1px solid black;
 }
 
 form input[type="submit"] {
 	padding: .75em;
 	text-transform: uppercase;
 	font-family: "Poiret One", sans-serif;
-	background: var(--link-color);
+	background: var(--button-color);
 	border: none;
 	border-radius: 5px;
+	transition: background-color 250ms ease-in;
 }
 
 form input[type="submit"]:hover {
-	background-color: coral;
 	cursor: pointer;
-	background: var(--hover-link-color);
+	background: var(--link-hover-color);
 }
 
 .text-centered {
@@ -169,7 +173,34 @@ form input[type="submit"]:hover {
 	text-align: center;
 }
 
+/* --- experimental colors --- */
+/* --- https://doka.guide/css/accent-color/ --- */
+html {
+  --brand: hotpink;
+  scrollbar-color: hotpink Canvas;
+}
+
+:root { accent-color: var(--brand); }
+:focus-visible { outline-color: var(--brand); }
+::selection { background-color: var(--brand); }
+::marker { color: var(--brand); }
+
+:is(
+  ::-webkit-calendar-picker-indicator,
+  ::-webkit-clear-button,
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button
+) {
+  color: var(--brand);
+}
+
 /* === CONTENT STYLES === */
+
+.website-title > a{
+	color: #afc696 !important;
+	text-shadow: 1px 0px lightsteelblue;
+	font-weight: lighter;
+}
 
 .content-wrap {
 	background-color: #f0eae2;  display: grid;
@@ -177,9 +208,12 @@ form input[type="submit"]:hover {
 	flex-grow: 1;
 }
 
-.content-area {
-	padding: 2em;
-}
+.content-area {  
+	padding: 1em 2em;
+	background: white;
+	margin:4em;
+	border-radius: .33em;
+  }
 
 .content-area h4>a::before {
 	content: "#";

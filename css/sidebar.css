@@ -21,7 +21,7 @@
 	padding-left: 1.25em;
 }
 
-#sidebar-primary .website-main-navigation li {
+#sidebar-primary .website-main-navigation .menu-item {
 	padding-top: .75em;
 }
 
@@ -33,8 +33,15 @@
 
 .sidebar .searchform > div {
 	display: flex;
-	flex-direction: column;
-	gap: .5em;
+}
+
+.sidebar .searchform input[type="text"] {
+	width: 100%;
+	border-radius: 5px 0 0 5px;
+}
+
+.searchform input[type="submit"] {
+	border-radius: 0 5px 5px 0;
 }
 
 .sidebar .searchform .screen-reader-text {
@@ -61,15 +68,28 @@
 	padding: 2rem;
 }
 
-.sidebar-level-2 li {
+.sidebar-level-2 .menu-item {
 	display: flex;
 	align-content: baseline;
 }
 
-.sidebar-level-2 ul a::before {
+.sidebar .website-main-navigation a::before {
 	content: url("../media/icons/cup-of-tea.png");
 	padding-right: .25em;
-}
+	/* ul padding is 1.25em where 1em is an icon and 0.25em is a padding right */
+	margin-left: -1em;
+	opacity: 0;
+	transition: all 180ms ease-out;
+  }
+  
+  .sidebar .website-main-navigation .menu-item a:hover::before  {
+	opacity: 1;
+	margin-left: 0;
+  }
+  
+  .sidebar .website-main-navigation a::after {
+	display: none;
+  }
 
 .sidebar-level-3 {
 	position: absolute;
