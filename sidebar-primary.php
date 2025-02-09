@@ -1,6 +1,7 @@
 <div id="sidebar-primary" class="sidebar">
 
-	<div class="sidebar-level-1">
+<div class="sidebar-wrapper">
+	<div class="sidebar-level-1 text-centered">
 		<?php
 			$website_url = get_site_url();
 			echo "<h2 class='website-title'>";
@@ -13,5 +14,6 @@
 	<div class="sidebar-level-2">
 		<?php dynamic_sidebar('primary'); ?>
 	</div>
+</div>
 
 </div>

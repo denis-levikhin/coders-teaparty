@@ -22,7 +22,7 @@ add_filter("widget_nav_menu_args", "adjust_menu_widget_args", 10, 3);
 // === end organize menus === //
 
 function codersteaparty_enqueue_scripts_and_styles() {
-  wp_enqueue_script( 'script', get_stylesheet_directory_uri() . '/js/script.js', array( 'jquery' ));
+  wp_enqueue_script( 'script', get_stylesheet_directory_uri() . '/js/script.js', array( 'jquery' ), false, array('strategy' => 'defer'));
   
 	wp_enqueue_style( 'sidebar', get_template_directory_uri() . "/css/sidebar.css" );
 }
@@ -40,3 +40,43 @@ function codersteaparty_widgets_init() {
 }
 
 add_action( 'widgets_init', 'codersteaparty_widgets_init' );
+
+// === customize comments === //
+
+function codersteaparty_comments($comment, $args, $depth) {
+	$GLOBALS['comment'] = $comment; ?>
+	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
+	  	<div id="comment-<?php comment_ID(); ?>">
+	  		<div class="avatar-wrapper">
+				<?php echo get_avatar( $comment, 64 ); ?>
+			</div>
+		   
+			<div class="comment-text-wrapper">
+				<div class="comment-meta-wrapper">	
+					<?php 
+						$comment_date = get_comment_date('M. jS, o');
+						printf(__('By <span class="comment-meta comment-author">%s</span>'), get_comment_author());
+						echo (__(" on <span class='comment-meta comment-date'>$comment_date</span>"));
+					?>
+				</div>
+				<div class="comment-moderation">
+					<?php if ($comment->comment_approved == '0') : ?>
+						<p><?php _e('Your comment is awaiting moderation.') ?></p>
+					<?php endif; ?>
+				</div>
+				<div class="user-comment">
+					<?php comment_text() ?>
+				</div>
+				<div class="comment-action-links">
+					<span class="reply-link">
+						<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+					</span>
+					<span class="edit-link">
+						<?php edit_comment_link(__('Edit comment'),'  ','') ?>
+					</span>
+				</div>
+		   </div>
+	  </div>
+ <?php } 
+
+ // === === === === === === === //

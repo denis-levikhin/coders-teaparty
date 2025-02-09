@@ -10,7 +10,16 @@
 	<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-	
+
+    <!-- Optimize page load by loading CSS only if necessary -->
+    <?php 
+        // add comments CSS only for posts
+        // TODO: minify CSS
+        if( is_singular('post') ) {
+            $comments_file_url = get_stylesheet_directory_uri() . "/css/comments.css";
+            echo "<link rel='stylesheet' href='$comments_file_url'>";
+        } ?>
+
 	<?php wp_head(); ?>
 </head>
 
