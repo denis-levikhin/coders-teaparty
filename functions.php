@@ -34,7 +34,6 @@ add_action('init', 'register_custom_scripts_nstyles');
 function register_custom_scripts_nstyles() {
     wp_register_style( 'comments', get_stylesheet_directory_uri() . "/css/comments.css" );
     wp_register_style( 'microblog_styles', get_stylesheet_directory_uri() . "/css/microblog.css" );
-	wp_register_script( 'microblog_scripts',  get_stylesheet_directory_uri() . '/js/microblog.js', array( 'jquery' ), false, array('strategy' => 'defer', 'in_footer'=>'true'));
 }
 
 // TODO: minify CSS
@@ -50,16 +49,6 @@ function codersteaparty_enqueue_scripts_and_styles() {
 
   	if(is_archive('microblog')) {
 		wp_enqueue_style( 'microblog_styles' );
-
-		wp_localize_script(
-			'microblog_scripts',
-			'ajax_data',
-			array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'nonce' => wp_create_nonce( 'example-nonce' )
-			)
-		);
-		wp_enqueue_script( 'microblog_scripts' );
   	}
 }
 add_action( 'wp_enqueue_scripts', 'codersteaparty_enqueue_scripts_and_styles' );
@@ -79,51 +68,6 @@ function codersteaparty_widgets_init() {
 }
 
 add_action( 'widgets_init', 'codersteaparty_widgets_init' );
-
-// >>> Theme admin menu to configure parameters
-// See: https://codex.wordpress.org/Settings_API
-
-//add_action( 'admin_menu', 'codersteaparty_register_admin_menu' );
-
-add_action('admin_init', 'codersteaparty_register_admin_menu');
-
-function codersteaparty_register_admin_menu(){
-	// Option section (for multiple fields)
-	add_settings_section( 
-		'microblog_character_limit_section', 
-		'Microblog Character limit', 
-		'microblog_character_limit_section_callback', 
-		'reading' 
-    );
-
-	// Option field in the form
-	add_settings_field( 'codersteaparty_setting-microblogcharlimit',
-	'Characters before "Read More"',
- 	'codersteaparty_microblogcharlimit_setting_callback',
-	'reading',
-	'microblog_character_limit_section',
-	array( 'label_for' => 'myprefix_setting-id' ) );
-
-	$args = array(
-		'type' => 'integer', 
-		'label' => 'Microblog Character limit',
-		'sanitize_callback' => 'sanitize_text_field',
-		'default' => 250
-	);
-
-	// Allow WP to manage this opiton for us
-	register_setting( 'reading', 'codersteaparty_microblog_caracters_limit', $args );
-}  
-
-function codersteaparty_microblogcharlimit_setting_callback(){
-	$existing_option_value = get_option( 'codersteaparty_microblog_caracters_limit', 250 );
-	echo '<input type="number" name="codersteaparty_microblog_caracters_limit" min="1" value="' . $existing_option_value . '">';
-}
-
-function microblog_character_limit_section_callback( $args ) {
-    echo 'Set how many characters can microblog post show before hiding the rest with "Read more link"';
-}
-
 
 // >>> Custom comments function to generate markup
 // TOOD: move this to a separate functions file (?)

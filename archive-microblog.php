@@ -15,34 +15,7 @@
       <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
         <article class="single-microblog-post" data-ajax-id="<?php echo get_the_id();?>">
           <p class="single-microblog-message">
-            <?php 
-              $post_content = get_the_content(); 
-              $characters_before_readmore = get_option( 'codersteaparty_microblog_caracters_limit', 250 );
-              $is_large_post = ( strlen($post_content) - $characters_before_readmore ) > $characters_before_readmore * 0.25;
-
-              /* insert readmore automatically
-               * no need to "readmore" a single word or two, only if a message is significantly bigger than it should be
-               * also just output full post content if there is no "show/hide" plugin https://wordpress.org/plugins/showhide-shortcode/
-               * ofc plugin dependance is bad, but I dont want to implement "readmore" functionality myself
-               * 
-               * TODO: FIX THIS, probably with AJAX instead of this shit
-               * i wanna load the whole post instead of using that showhide plugin
-               */
-              //if( ! $is_large_post || ! shortcode_exists( 'showhide' ) ) {
-              if(true){
-                the_content();
-              } else {
-                $visible_part = substr( $post_content, 0, $characters_before_readmore );
-                $last_space_in_visible = strrpos($visible_part, '.') + 1;
-
-                $visible_part = substr( $post_content, 0, $last_space_in_visible );
-                $hidden_part = substr( $post_content, $last_space_in_visible );
-
-                $hidden_part_wrapped = trim( do_shortcode('[showhide]' . $hidden_part . '[/showhide]') );
-                
-                echo $visible_part . $hidden_part_wrapped;
-              }
-            ?>
+            <?php the_content(); ?>
           </p>
           <p class="single-microblog-post-meta">
             <?php 
