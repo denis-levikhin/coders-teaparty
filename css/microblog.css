@@ -1,0 +1,29 @@
+.single-microblog-post {
+    margin: 2em 0;
+    padding: 1em;
+    background: ghostwhite;
+    border-radius: 5px;
+    color: #34305a;
+    border: 2px solid ghostwhite;
+}
+
+
+.single-microblog-post-meta {
+    border-top: 1px solid var(--link-color);
+    margin: 0;
+    padding: 1em 0 0 0;
+    color: darkgray;
+    font-size: 14px;
+    text-align: right;
+}
+
+.single-microblog-message {
+    font-weight: lighter;
+}
+
+.microblog-post-author {
+    font-weight: bold;
+}
+.microblog-post-date {
+    font-weight: bold;
+}

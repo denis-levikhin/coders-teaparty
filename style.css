@@ -4,6 +4,9 @@ Author: Sova
 Author URI: https://equestria.social/@graymouse
 Description: Simple custom theme for Coders Teaparty Game Development team
 Version: 1.0
+Requires at least: 5.0
+Tested up to: 6.7
+Requires PHP: 7.4
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -41,6 +44,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 html,
 body {
 	font-family: var(--default-font-family) !important;
+	font-weight: lighter;
 	margin: 0;
 	/* remove default browser margins */
 }
@@ -207,16 +211,20 @@ html {
 
 /* === CONTENT STYLES === */
 
-.website-title > a{
+.website-title > a {
 	color: #9c92ac !important;
 	text-shadow: 1px 0px lightsteelblue;
 	font-weight: lighter;
 }
-
 .content-wrap {
-	background-color: #f0eae2;  display: grid;
-	grid-template-columns: 1fr 5fr;
+	margin: auto 0;
+}
+
+.content-wrap:not(.no-sidebar) {
+	background-color: #f0eae2;  
 	flex-grow: 1;
+	display: grid;
+	grid-template-columns: 1fr 5fr;
 }
 
 .content-area {  
@@ -227,7 +235,13 @@ html {
 	position: relative;
   }
 
-  .content-area::before {		
+  .content-wrap.no-sidebar .content-area {
+	background-color: #eadbc9;  
+	border-radius: 2rem;
+	margin: auto;
+  }
+
+  .content-wrap:not(.no-sidebar) .content-area::before {		
 	content: "";
 	background-image: url("media/clouds-bottom.svg");
 	height: 6rem;
@@ -252,6 +266,34 @@ html {
 	opacity: 1;
 	margin-left: 0;
 }
+
+/* Pagination */
+
+.pagination ul {
+	list-style: none;
+	display: flex;
+	padding: 0;
+  }
+  
+  .pagination a {
+	border: 1px solid var(--link-color);
+	border-radius: 3px;
+	padding: .5em;
+	min-width: 1em;
+	margin: .25em;
+	text-align: center;
+  }
+  
+  .pagination a:hover {
+	border: 1px solid var(--link-hover-color);
+	transition: 100ms;
+  }
+  
+  .pagination a::after {
+	display: none;
+  }
+
+/* Standard messages */
 
 .error-message,
 .success-message {
