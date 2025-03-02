@@ -13,16 +13,16 @@
     </div>
     <div class="posts-list">
       <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-        <article class="single-microblog-post" data-ajax-id="<?php echo get_the_id();?>">
-          <p class="single-microblog-message">
+        <div class="single-microblog-post" data-ajax-id="<?php echo get_the_id();?>">
+          <article class="single-microblog-message">
             <?php the_content(); ?>
-          </p>
+          </article>
           <p class="single-microblog-post-meta">
             <?php 
               printf("By <span class='microblog-post-author'>%s</span> on <span class='microblog-post-date'>%s %s</span>", get_the_author(), get_the_date("jS M Y"), get_post_time("H:i"));
             ?>
           </p>
-        </article>
+        </div>
       <?php endwhile; else : ?>
           <article>
             <p>Woops, nothing here yet!</p>

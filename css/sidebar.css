@@ -31,10 +31,11 @@
 }
 
 #sidebar-primary .website-main-navigation a {
-	font-size: 18px;
+	font-size: 22px;
 	display: block;
 	align-content: center;
 	margin: 0;
+	font-family: "Poiret One";
 }
 
 .sidebar .searchform > div {
