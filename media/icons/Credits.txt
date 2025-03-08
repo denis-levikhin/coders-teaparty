@@ -6,5 +6,6 @@
 
 <a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food and restaurant icons">Food and restaurant icons created by Freepik - Flaticon</a>
 
-
 <a href="https://www.flaticon.com/free-icons/quote" title="quote icons">Quote icons created by Three musketeers - Flaticon</a>
+
+<a href="https://www.flaticon.com/free-icons/min" title="min icons">Min icons created by JC Icon - Flaticon</a>

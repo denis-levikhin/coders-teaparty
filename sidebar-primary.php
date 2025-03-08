@@ -1,6 +1,9 @@
-<div id="sidebar-primary" class="sidebar">
+<div id="sidebar-primary" class="sidebar mobile-view-hidden">
 
 <div class="sidebar-wrapper">
+	<div class="mobile-menu-close-button">
+		<img src="<?php echo get_stylesheet_directory_uri() . '/media/icons/close-svgrepo-com.svg'; ?>" alt="menu-close-button" tabindex="0">
+	</div>
 	<div class="sidebar-level-1 text-centered">
 		<?php
 			$website_url = get_site_url();

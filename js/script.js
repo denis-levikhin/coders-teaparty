@@ -30,3 +30,6 @@ jQuery(".comment-reply-link").on("click", function(e){
     }, 1000);
 });
 
+jQuery(".mobile-menu-close-button, .mobile-menu-switch").on("click", function(){
+    jQuery(".sidebar").toggleClass("mobile-view-hidden");
+});
