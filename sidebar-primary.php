@@ -7,6 +7,9 @@
 	<div class="sidebar-level-1 text-centered">
 		<?php
 			$website_url = get_site_url();
+			echo "<a id='le-fox' class='no-hover-effects' href='$website_url'></a>";
+		?>
+		<?php 
 			echo "<h2 class='website-title'>";
 			echo "<a href='$website_url'>";
 			bloginfo('name');
@@ -16,6 +19,20 @@
 	</div>
 	<div class="sidebar-level-2">
 		<?php dynamic_sidebar('primary'); ?>
+	</div>
+	<div class="sidebar-level-3">
+		<p class="login-message">
+			<?php if( ! is_user_logged_in() ) {
+				$url = esc_url( wp_login_url( get_permalink() ) );
+				$linktext = __( 'Log in', 'textdomain' );
+				echo "<a href='$url' class='no-hover-effects'>$linktext</a>";
+			} else {
+				$url = esc_url( get_admin_url() );
+				$linktext = __( 'To Admin', 'textdomain' );
+				echo "<a href='$url' class='no-hover-effects'>$linktext</a>";
+			}
+			?>
+		</p>
 	</div>
 </div>
 

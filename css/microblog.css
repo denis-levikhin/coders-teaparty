@@ -1,10 +1,12 @@
 .single-microblog-post {
     margin: 2em 0;
     padding: 1em;
-    background: ghostwhite;
+    background: rgba(175, 198, 150, .3);
     border-radius: 5px;
     color: #34305a;
     border: 2px solid ghostwhite;
+    font-family: "Poiret One";
+    line-height: 1.25;
 }
 
 .single-microblog-post-meta {
@@ -13,8 +15,9 @@
     padding: 1em 0 0 0;
     font-size: 12px;
     text-align: right;
-    font-weight: lighter;
     font-family: "Poiret One";
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .single-microblog-message {

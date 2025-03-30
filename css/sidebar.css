@@ -1,7 +1,7 @@
 .sidebar {
 	display: flex;
 	flex-direction: column;
-	background-color: #eadbc9;
+	background-color: var(--primary-color);
 }
 
 @media only screen and (min-width: 1024px) {
@@ -17,17 +17,31 @@
 .sidebar-wrapper {
 	position: sticky;
 	top: 0;
+	height: 100%;
 }
 
 #sidebar-primary .website-main-navigation {
-	margin: 0;
-	text-align: left;
-	list-style: none;
+	margin: 0;  
+	list-style: disclosure-closed;
 	padding-left: 1.25em;
 }
 
 #sidebar-primary .website-main-navigation .menu-item {
 	padding-top: .75em;
+}
+
+#sidebar-primary #le-fox {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 200px;
+	height: 100%;
+	background-image: url("../media/le-fox.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	z-index: 1;
+	filter: drop-shadow(drop-shadow(1px 2px));
+	color: black;
 }
 
 #sidebar-primary .website-main-navigation a {
@@ -65,8 +79,15 @@
 }
 
 .sidebar-level-1 .website-title {
-	margin-top: calc(25vmin / 2);
-	margin-bottom: 1em;
+	margin-top: auto;
+	z-index: 3;
+	margin-bottom: 0;
+}
+
+.sidebar-level-1 .website-title > a {
+	/*color: #9c92ac !important;*/
+	color: var(--button-color);
+	text-shadow: 1px 1px 2px black;
 }
 
 .sidebar-level-1::after {
@@ -83,13 +104,25 @@
   }
 
 .sidebar-level-2 {
-	background-color: #eadbc9;
+	background-color: var(--primary-color);
 	padding: 2rem;
 }
 
-.sidebar-level-2 .menu-item {
-	display: flex;
-	align-content: baseline;
+.sidebar-level-3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: #34315b;
+}
+
+.sidebar-level-3 a {
+	color: var(--button-color);
+}
+
+.sidebar-level-3 a:hover {
+	color: var(--link-hover-color);
 }
 
 .sidebar .website-main-navigation a::before {
@@ -99,27 +132,15 @@
 	margin-left: -1em;
 	opacity: 0;
 	transition: all 180ms ease-out;
-  }
+}
   
-  .sidebar .website-main-navigation .menu-item a:hover::before  {
+.sidebar .website-main-navigation .menu-item a:hover::before  {
 	opacity: 1;
 	margin-left: 0;
-  }
+}
   
-  .sidebar .website-main-navigation a::after {
+.sidebar .website-main-navigation a::after {
 	display: none;
-  }
-
-.sidebar-level-3 {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	padding-top: 1.75em;
-	padding-bottom: 1.75em;
-	background-color: #34315b;
-	background-image: url("../media/floating-cogs.svg");
-	text-shadow: 1px 1px firebrick;
 }
 
 footer {
@@ -148,12 +169,26 @@ footer {
 		transition: 750ms;
 	}
 
+	#sidebar-primary .website-main-navigation {
+		padding-left: 0;
+		list-style: none;
+	}
+
 	.sidebar.mobile-view-hidden {    
 		transform: translate(-100vw);
 	}
 
 	.sidebar-level-1 {
 		padding-top: 3rem; /*for close button*/
+	}
+
+	.sidebar .sidebar_widget {
+		text-align: center;
+		margin-top: 2.5rem;
+	}
+
+	#sidebar-primary .website-main-navigation .menu-item {
+		place-content: center;
 	}
 
 	.mobile-menu-close-button {
