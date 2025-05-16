@@ -1,10 +1,8 @@
 .single-microblog-post {
     margin: 2em 0;
     padding: 1em;
-    background: rgba(175, 198, 150, .3);
+    background: var(--primary-color);/*rgba(175, 198, 150, .3)*/
     border-radius: 5px;
-    color: #34305a;
-    border: 2px solid ghostwhite;
     font-family: "Poiret One";
     line-height: 1.25;
 }
@@ -22,8 +20,7 @@
 
 .single-microblog-message {
     font-weight: lighter;
-    min-height: 6em;
-    padding: 1em 0;
+    padding: .5em 0;
     text-align: justify;
 }
 

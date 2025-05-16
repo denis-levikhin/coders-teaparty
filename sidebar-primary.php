@@ -1,4 +1,4 @@
-<div id="sidebar-primary" class="sidebar mobile-view-hidden">
+<aside id="sidebar-primary" class="sidebar mobile-view-hidden">
 
 <div class="sidebar-wrapper">
 	<div class="mobile-menu-close-button">
@@ -15,25 +15,14 @@
 			bloginfo('name');
 			echo "</a></h2>";
 		?>
+		<span class="greeting">Addya</span>
 		
 	</div>
 	<div class="sidebar-level-2">
 		<?php dynamic_sidebar('primary'); ?>
-	</div>
-	<div class="sidebar-level-3">
-		<p class="login-message">
-			<?php if( ! is_user_logged_in() ) {
-				$url = esc_url( wp_login_url( get_permalink() ) );
-				$linktext = __( 'Log in', 'textdomain' );
-				echo "<a href='$url' class='no-hover-effects'>$linktext</a>";
-			} else {
-				$url = esc_url( get_admin_url() );
-				$linktext = __( 'To Admin', 'textdomain' );
-				echo "<a href='$url' class='no-hover-effects'>$linktext</a>";
-			}
-			?>
-		</p>
+		<ul class="lang-switcher no-hover-effects">
+			<?php pll_the_languages( array( 'show_flags' => 1, 'hide_if_no_translation' => 1, 'dropdown' => 1 ) ); ?>
+		</ul>
 	</div>
 </div>
-
-</div>
+</aside>

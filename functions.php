@@ -6,6 +6,7 @@
 
 // >> Indicate supported features
 add_theme_support('post-thumbnails');
+add_theme_support( 'responsive-embeds' );
 
 // === organize nav menus === //
 function add_theme_menu_support() {
@@ -122,3 +123,31 @@ remove_rewrite_tag( '%microblog%' );
 add_action( 'after_switch_theme', 'flush_rewrite_rules' );
 
 // === === === === === === === //
+
+// >>> Create new front-end Profile page when new user is added
+if( ! function_exists( 'coders_teaparty_create_user_profile' ) ){
+	function coders_teaparty_create_user_profile( $user_id, $userdata ) {
+		$postarr = array(
+			'post_title' => $userdata['first_name'] ?: $userdata['user_login'],
+			'post_content' => '',
+			'post_status' => 'publish',
+			'post_type' => 'user-profile',
+			'meta_input' => array(
+				'profile_user_id' => $user_id
+			),
+		);
+		wp_insert_post( $postarr );
+	}
+} 
+
+add_action( 'user_register', 'coders_teaparty_create_user_profile', 10, 2 );
+
+// === === === === === === === //
+
+// >>> Remove the color picker from the user profile admin page to declutter it
+
+add_action( 'admin_head-profile.php', 'coders_teaparty_remove_admin_color_scheme_picker' );
+
+function coders_teaparty_remove_admin_color_scheme_picker() {
+    remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
+}

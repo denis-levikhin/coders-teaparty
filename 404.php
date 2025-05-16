@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<main class="content-wrap no-sidebar">
+<main class="content-wrap no-sidebar text-centered">
     
 
     <style>

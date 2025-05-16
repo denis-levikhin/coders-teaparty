@@ -60,6 +60,10 @@
   margin: 0;
 } 
 
+.comment-form-hidden input, .comment-form-hidden label, .comment-form-hidden textarea {
+    height: 0;
+}
+
 .comment-form-visible {
     opacity: 1;
     height: max(25vh, 250px);

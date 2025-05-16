@@ -101,28 +101,24 @@
 	bottom: -4rem;
 	background-size: cover;
 	background-repeat: no-repeat;
-  }
+}
+
+.sidebar-level-2::after {
+	content: "";
+	background-image: url("../media/faded-slant-bottom.svg");
+	height: 4rem;
+	width: 100%;
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
 
 .sidebar-level-2 {
 	background-color: var(--primary-color);
 	padding: 2rem;
-}
-
-.sidebar-level-3 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  background-color: #34315b;
-}
-
-.sidebar-level-3 a {
-	color: var(--button-color);
-}
-
-.sidebar-level-3 a:hover {
-	color: var(--link-hover-color);
 }
 
 .sidebar .website-main-navigation a::before {
@@ -130,12 +126,10 @@
 	padding-right: .25em;
 	/* ul padding is 1.25em where 1em is an icon and 0.25em is a padding right */
 	margin-left: -1em;
-	opacity: 0;
 	transition: all 180ms ease-out;
 }
   
 .sidebar .website-main-navigation .menu-item a:hover::before  {
-	opacity: 1;
 	margin-left: 0;
 }
   
@@ -145,16 +139,52 @@
 
 footer {
 	/*TODO replace with variable something like --website-main-color*/
+	color: #6fa329;
 	font-weight: bold;
 	font-family: "Philosopher", sans-serif;
 	font-size: 18px;
-	color: #6fa329;
 	text-align: center;
 }
 
 
 .mobile-menu-close-button {
 	display: none;
+}
+/* >>> Language switcher styles */
+.lang-switcher {
+	list-style: none;
+	margin: 0;
+	display: flex;
+	position: absolute;
+	bottom: 0;
+	z-index: 12;
+	left: 0;
+	padding: .75em;
+}
+
+.lang-switcher select,
+.lang-switcher option {
+  padding: .25em 1em;
+  text-transform: uppercase;
+  font-family: "Poiret One", sans-serif;
+  background: var(--button-color);
+  border: none;
+  border-radius: 5px;
+}
+
+.lang-switcher option:hover {
+	background: var(--link-hover-color);
+}
+
+/* >>> THE FUNNY */
+.website-title + .greeting {
+	font-family: "Hymmnos";
+	color: var(--secondary-color);
+	display: block;
+	margin-right: 2em;
+	position: absolute;
+	bottom: 0;
+	align-self: flex-end;
 }
 
 /* --- MOBILE STYLES --- */
