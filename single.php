@@ -4,6 +4,7 @@
   <section class="content-area content-thin">
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
         <article class="article-full">
+        <?php echo ct_get_breadcrumbs(); ?>
           <header>
             <h2><?php the_title(); ?></h2>
             By: <?php the_author(); ?>

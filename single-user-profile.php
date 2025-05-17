@@ -3,6 +3,7 @@
   <?php get_sidebar( 'primary' ); ?>
   <section class="content-area content-thin">
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+        <?php echo ct_get_breadcrumbs(); ?>
         <?php 
             $profile_user_id = get_post_meta( get_the_id(), 'profile_user_id', TRUE ); 
             $user_obj = get_user_by( 'id', $profile_user_id );

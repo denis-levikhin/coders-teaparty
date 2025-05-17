@@ -1,9 +1,9 @@
 <?php get_header(); ?>
-<?php include "includes/functions.php"; ?>
 <main class="content-wrap">
   <?php get_sidebar( 'primary' ); ?>
   <section class="content-area content-thin">
-    <h2></h2>
+    <?php echo ct_get_breadcrumbs(); ?>
+    <p></p>
     <div class="archive-description">
       <?php
         $blog_url = get_site_url(null,"blog");

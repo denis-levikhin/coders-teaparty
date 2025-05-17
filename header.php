@@ -16,7 +16,7 @@
     <!-- Devnote: do not load separate page stylesheets here, do it in functions.php via enqueue_style() -->
 </head>
 
-<body <?php body_class(); ?>>
+<body id="sky" <?php body_class(); ?>>
     <div class="mobile-header">
         <div class="mobile-menu-switch">
             <img src="<?php echo get_stylesheet_directory_uri() . '/media/icons/menu-vertical-svgrepo-com.svg'; ?>" alt="open-menu-button" tabindex="0">

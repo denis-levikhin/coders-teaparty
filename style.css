@@ -84,6 +84,8 @@ ul.menu {
 h1,
 h2 {
 	font-family: 'Poiret One';
+	margin-top: 0.5em;
+  	margin-bottom: 0.5em;
 }
 
 h1,
@@ -103,12 +105,12 @@ h6 {
 
 h1 {
 	color: #6fa329;
-	font-size: 72px;
+	font-size: 42px;
 }
 
 h2 {
 	color: #6fa329;
-	font-size: 42px;
+	font-size: 36px;
 }
 
 a {
@@ -244,7 +246,8 @@ html {
 	top: 0;
 	bottom: 0;
 	left: 0;
-	right: 0;
+	right: 0;  
+	z-index: 1;
 }
 
 @media screen AND (min-width: 601px) {
@@ -340,10 +343,6 @@ html {
 	display: none;
 }
 
-.vanta-canvas {
-	opacity: 0;
-	transition: 1s;
-}
 /* --- YouTube Video --- */
 .video-container {
 	width: 100%; /*now it is 100% of viewport (window) width.*/
@@ -364,6 +363,17 @@ html {
 	position:absolute;
 	top:0;
 	left:0;
+}
+
+/* --- Starry Sky animation on background by Jed Crowther https://codepen.io/jedcrowther/pen/wdzQvy --- */
+
+.star {
+  box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.4);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 2px;
+  background-color: white;
 }
 
 /* --- MOBILE STYLES --- */

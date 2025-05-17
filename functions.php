@@ -1,4 +1,6 @@
 <?php
+require_once get_stylesheet_directory() . '/includes/functions.php';
+
 /**
  * General theme functions, admin menus and configuration.
  * Add your reusable functions not related to theme configuration to /includes/functions.php
@@ -41,7 +43,9 @@ function register_custom_scripts_nstyles() {
 function codersteaparty_enqueue_scripts_and_styles() {
 	// Enqueue these on EVERY page of the website
 	wp_enqueue_style(  'style',   get_stylesheet_directory_uri() . '/style.css' );
-  	wp_enqueue_script( 'script',  get_stylesheet_directory_uri() . '/js/script.js', array( 'jquery' ), false, array('strategy' => 'defer'));
+  	wp_enqueue_script( 'script',  get_stylesheet_directory_uri() . '/js/script.js', array( 'jquery' ), FALSE, array('strategy' => 'defer'));
+  	wp_enqueue_script( 'tweenmax', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js', array(), FALSE, array('strategy' => 'async'));
+  	wp_enqueue_script( 'starry-sky',  get_stylesheet_directory_uri() . '/js/starry-sky.js', array( 'tweenmax' ), FALSE, array('strategy' => 'defer', 'in_footer' => TRUE ));
   	wp_enqueue_style(  'sidebar', get_stylesheet_directory_uri() . '/css/sidebar.css' );
 
     if( is_singular('post') ) {
@@ -121,33 +125,3 @@ add_filter( 'is_post_type_viewable', function( $is_viewable, $post_type ) {
 
 remove_rewrite_tag( '%microblog%' );
 add_action( 'after_switch_theme', 'flush_rewrite_rules' );
-
-// === === === === === === === //
-
-// >>> Create new front-end Profile page when new user is added
-if( ! function_exists( 'coders_teaparty_create_user_profile' ) ){
-	function coders_teaparty_create_user_profile( $user_id, $userdata ) {
-		$postarr = array(
-			'post_title' => $userdata['first_name'] ?: $userdata['user_login'],
-			'post_content' => '',
-			'post_status' => 'publish',
-			'post_type' => 'user-profile',
-			'meta_input' => array(
-				'profile_user_id' => $user_id
-			),
-		);
-		wp_insert_post( $postarr );
-	}
-} 
-
-add_action( 'user_register', 'coders_teaparty_create_user_profile', 10, 2 );
-
-// === === === === === === === //
-
-// >>> Remove the color picker from the user profile admin page to declutter it
-
-add_action( 'admin_head-profile.php', 'coders_teaparty_remove_admin_color_scheme_picker' );
-
-function coders_teaparty_remove_admin_color_scheme_picker() {
-    remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
-}
