@@ -7,6 +7,8 @@ Version: 1.0
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
+Text Domain: coders-teaparty
+Domain Path: /languages
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -34,6 +36,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 	--button-color: #AFC696;
 	--button-hover-color: #D889A7;
 	--link-color: steelblue; 
+	--mobile-header-height: 4rem;
 	/* darjilling color */
 	--primary-color: #f0e7e0;
 	/* matcha tea color */
@@ -56,8 +59,9 @@ body {
 	*/
 	font-family: var(--default-font-family) !important;
 	font-weight: 300;
-	margin: 0;
-	/* remove default browser margins */
+	margin: 0; /* remove default browser margins */ 
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
 }
 
 
@@ -117,15 +121,34 @@ a {
 	text-decoration: none;
 	color: var(--link-color);
 	display: inline-block;
-	padding-bottom: .25em;
 	position: relative;  
 }
 
+/* =============== TABLE STYLES =============== */
+table {
+  width: 100%;
+}
+
+tr:nth-of-type(2n+1) {
+  background-color: #f6f9fb;
+}
+
+th {
+  background-color: var(--secondary-color);  
+  padding: .25em 0;
+}
+
+td {
+  text-align: center;
+  padding: .25em 0;
+}
+
+/* =============== LINK STYLES =============== */
 a:hover {
 	color: var(--link-hover-color);
 }
 
-a::after {
+.content-area a::after {
 	background: none repeat scroll 0 0 transparent;
 	bottom: 0;
 	content: "";
@@ -140,17 +163,17 @@ a::after {
 	margin-top: 1.25em;
   }
   
-a:hover::after {
+.content-area a:hover::after {
 	width: 100%;
 }
 
-a.no-hover-effects, 
-.no-hover-effects a {
+.content-area a.no-hover-effects, 
+.content-area .no-hover-effects a {
 	padding-bottom: initial;
 }
 
-a.no-hover-effects::after, 
-.no-hover-effects a::after  {
+.content-area a.no-hover-effects::after, 
+.content-area .no-hover-effects a::after  {
 	display: none;
 }
 
@@ -182,7 +205,7 @@ form input[type="submit"] {
 	padding: .75em;
 	text-transform: uppercase;
 	font-family: "Poiret One", sans-serif;
-	background: var(--button-color);
+	background: var(--secondary-color);
 	border: none;
 	border-radius: 5px;
 	transition: background-color 250ms ease-in;
@@ -216,6 +239,10 @@ blockquote > p {
 	line-height: 1.5em;
 }
 
+video {
+	width: 100%;
+}
+
 /* --- experimental colors --- */
 /* --- https://doka.guide/css/accent-color/ --- */
 html {
@@ -237,7 +264,7 @@ html {
   color: var(--brand);
 }
 
-/* === CONTENT STYLES === */
+/* =============== CONTENT STYLES =============== */
 
 .content-wrap {	
 	margin: 0 auto;
@@ -264,7 +291,7 @@ html {
 	background: white;
 	border-radius: 0 0 .33em .33em;
 	position: relative;
-	overflow: scroll;
+	overflow-x: hidden;
 }
 
 .content-wrap.no-sidebar .content-area {
@@ -291,10 +318,10 @@ html {
 }
 
 .article-full {
-	font-size: min(16px, calc(8px + 0.6vw));
+	font-size: clamp(1rem, -0.231vw + 1.185rem, 1.125rem);
 }
 
-/* Pagination */
+/* =============== PAGINATION STYLES =============== */
 
 .pagination ul {
 	list-style: none;
@@ -320,7 +347,7 @@ html {
 	display: none;
   }
 
-/* Standard messages */
+/* =============== MISC STYLES =============== */
 
 .error-message,
 .success-message {
@@ -343,7 +370,7 @@ html {
 	display: none;
 }
 
-/* --- YouTube Video --- */
+/* TODO: check if these are still relevant after youtube plugin removal*/
 .video-container {
 	width: 100%; /*now it is 100% of viewport (window) width.*/
 	display: inline-block;
@@ -376,7 +403,7 @@ html {
   background-color: white;
 }
 
-/* --- MOBILE STYLES --- */
+/* =============== MOBILE STYLES =============== */
 @media screen AND (max-width: 600px){
 	body {
 		overflow: initial; /* no Vanta.js anyways */

@@ -1,0 +1,82 @@
+# Blank WordPress Pot
+# Copyright 2014 ...
+# This file is distributed under the GNU General Public License v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Coders Teaparty v1.0.0\n"
+"Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
+"POT-Creation-Date: 2025-06-05 09:02+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: CodersTeaparty <oldteaowl2@gmail.com>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Bookmarks: \n"
+"X-Generator: Poedit 3.6\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: archive-microblog.php:10
+msgid "Funny random thoughts, music and inspiration strikes are posted here. "
+msgstr "Случайные мысли в три часа ночи, музыка, и патчноуты."
+
+#: comments.php:13
+msgid "Comments"
+msgstr "Комментарии"
+
+#: comments.php:44
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:45
+msgid "&larr; Older Comments"
+msgstr "< К старым комментариям"
+
+#: comments.php:46
+msgid "Newer Comments &rarr;"
+msgstr "К новым комментариям >"
+
+#: comments.php:51
+msgid "Comments are closed."
+msgstr "Комментарии закрыты."
+
+#: functions.php:17
+msgid "Main Website Menu (Header)"
+msgstr "Главное меню"
+
+#: functions.php:66
+msgid "Primary Sidebar"
+msgstr "Основной сайдбар"
+
+#: functions.php:92
+#, php-format
+msgid "By <span class=\"comment-meta comment-author\">%s</span>"
+msgstr ""
+
+#: functions.php:98
+msgid "Your comment is awaiting moderation."
+msgstr "Ваш комментарий ожидает модерации."
+
+#: functions.php:109
+msgid "Edit comment"
+msgstr "Редактировать комментарий."
+
+#: includes/functions.php:83
+msgid "Home"
+msgstr "Домашняя страница"
+
+#: includes/functions.php:86
+msgid "Articles"
+msgstr "Статьи"
+
+#: includes/functions.php:108
+msgid "Search for: "
+msgstr "Поиск:"

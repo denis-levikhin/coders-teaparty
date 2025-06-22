@@ -184,7 +184,8 @@ footer {
 	margin-right: 2em;
 	position: absolute;
 	bottom: 0;
-	align-self: flex-end;
+	align-self: flex-end;  
+	z-index: 3;
 }
 
 /* --- MOBILE STYLES --- */
@@ -197,6 +198,14 @@ footer {
 		width: 100vw;
 		z-index: 12;
 		transition: 750ms;
+	}
+
+	.sidebar-wrapper {
+		margin-top: var(--mobile-header-height);
+		position: sticky;
+		left: 0;
+		right: 0;    
+		height: calc(100vh - var(--mobile-header-height));
 	}
 
 	#sidebar-primary .website-main-navigation {

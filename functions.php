@@ -125,3 +125,22 @@ add_filter( 'is_post_type_viewable', function( $is_viewable, $post_type ) {
 
 remove_rewrite_tag( '%microblog%' );
 add_action( 'after_switch_theme', 'flush_rewrite_rules' );
+
+
+// >>> Remove user profile fields not fitting the website theme or bloat
+function ct_remove_fields_from_userprofile(){
+    echo "<style>
+			.user-first-name-wrap,
+			.user-admin-color-wrap,
+			.user-display-name-wrap,
+			.user-url-wrap,
+			.user-profile-picture,
+			.user-last-name-wrap { 
+				display: none; 
+			}
+		</style>";
+}
+
+add_action( 'admin_head-user-edit.php', 'ct_remove_fields_from_userprofile' );
+
+add_action( 'admin_head-profile.php',   'ct_remove_fields_from_userprofile' );

@@ -10,10 +10,10 @@
 			echo "<a id='le-fox' class='no-hover-effects' href='$website_url'></a>";
 		?>
 		<?php 
-			echo "<h2 class='website-title'>";
+			echo "<h1 class='website-title'>";
 			echo "<a href='$website_url'>";
 			bloginfo('name');
-			echo "</a></h2>";
+			echo "</a></h1>";
 		?>
 		<span class="greeting">Addya</span>
 		

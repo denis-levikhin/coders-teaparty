@@ -80,10 +80,10 @@ if ( !function_exists( 'ct_get_breadcrumbs' ) ) {
 
 		$output = '<nav aria-label="Breadcrumbs" class="ct-breadcrumbs">';
 
-		$output .= '<a href="' . home_url() . '" rel="nofollow">Home</a>';
+		$output .= sprintf( '<a href="%s" rel="nofollow">%s</a>', home_url(), __( 'Home', 'coders-teaparty' ) );
         if( is_home() AND ! is_front_page() ){ /* posts page */
 			$output .= $separator;
-			$output .= '<span class="ct-breadcrumbs-item">Articles</span>';
+			$output .= sprintf('<span class="ct-breadcrumbs-item">%s</span>', __( 'Articles', 'coders-teaparty' ) );
         } elseif ( is_single() ) {
             $post_type_name = get_post_type();
             $post_type_object = get_post_type_object( $post_type_name );

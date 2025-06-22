@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        createStars(300);
+        createStars(150);
         selectStars();
         animateStars();
     }

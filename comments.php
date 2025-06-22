@@ -10,7 +10,7 @@ if ( post_password_required() ) {
 
 	<?php comment_form( 
 		array(
-			"title_reply" => __( 'What do you think?', 'codersteaparty' ),
+			"title_reply" => __( 'Comments', 'codersteaparty' ),
 			"class_form" => "comment-form appearance-animation-fade comment-form-hidden"	
 		) 
 	); ?>
