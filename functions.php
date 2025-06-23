@@ -1,5 +1,8 @@
 <?php
+
 require_once get_stylesheet_directory() . '/includes/functions.php';
+require_once get_stylesheet_directory() . '/includes/functions-user-profiles.php';
+require_once get_stylesheet_directory() . '/shortcodes/user-profiles.php';
 
 /**
  * General theme functions, admin menus and configuration.
@@ -37,6 +40,7 @@ add_action('init', 'register_custom_scripts_nstyles');
 function register_custom_scripts_nstyles() {
     wp_register_style( 'comments', get_stylesheet_directory_uri() . "/css/comments.css" );
     wp_register_style( 'microblog_styles', get_stylesheet_directory_uri() . "/css/microblog.css" );
+    wp_register_style( 'user_profile_styles', get_stylesheet_directory_uri() . "/css/user-profiles.css" );
 }
 
 // TODO: minify CSS
@@ -44,16 +48,27 @@ function codersteaparty_enqueue_scripts_and_styles() {
 	// Enqueue these on EVERY page of the website
 	wp_enqueue_style(  'style',   get_stylesheet_directory_uri() . '/style.css' );
   	wp_enqueue_script( 'script',  get_stylesheet_directory_uri() . '/js/script.js', array( 'jquery' ), FALSE, array('strategy' => 'defer'));
+
   	wp_enqueue_script( 'tweenmax', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js', array(), FALSE, array('strategy' => 'async'));
   	wp_enqueue_script( 'starry-sky',  get_stylesheet_directory_uri() . '/js/starry-sky.js', array( 'tweenmax' ), FALSE, array('strategy' => 'defer', 'in_footer' => TRUE ));
-  	wp_enqueue_style(  'sidebar', get_stylesheet_directory_uri() . '/css/sidebar.css' );
 
-    if( is_singular('post') ) {
+	wp_enqueue_style(  'sidebar', get_stylesheet_directory_uri() . '/css/sidebar.css' );
+
+	// Masonry Grid
+	wp_enqueue_style(  'masonry-css', get_stylesheet_directory_uri() . '/css/masonry.css' );
+  	wp_enqueue_script( 'imagesloaded-js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js', array(), FALSE, array('strategy' => 'async'));
+  	wp_enqueue_script( 'masonry-js',  get_stylesheet_directory_uri() . '/js/masonry.js', array( 'imagesloaded-js' ), FALSE, array('strategy' => 'defer', 'in_footer' => TRUE ));
+
+    if( is_singular( 'post' ) ) {
 		wp_enqueue_style( 'comments' );
-	} 
+	}
 
-  	if(is_archive('microblog')) {
+  	if( is_archive( 'microblog' ) ) {
 		wp_enqueue_style( 'microblog_styles' );
+  	}
+	
+	if( is_singular( 'ct-user-profile' ) ) {
+		wp_enqueue_style( 'user_profile_styles' );
   	}
 }
 add_action( 'wp_enqueue_scripts', 'codersteaparty_enqueue_scripts_and_styles' );
@@ -125,22 +140,3 @@ add_filter( 'is_post_type_viewable', function( $is_viewable, $post_type ) {
 
 remove_rewrite_tag( '%microblog%' );
 add_action( 'after_switch_theme', 'flush_rewrite_rules' );
-
-
-// >>> Remove user profile fields not fitting the website theme or bloat
-function ct_remove_fields_from_userprofile(){
-    echo "<style>
-			.user-first-name-wrap,
-			.user-admin-color-wrap,
-			.user-display-name-wrap,
-			.user-url-wrap,
-			.user-profile-picture,
-			.user-last-name-wrap { 
-				display: none; 
-			}
-		</style>";
-}
-
-add_action( 'admin_head-user-edit.php', 'ct_remove_fields_from_userprofile' );
-
-add_action( 'admin_head-profile.php',   'ct_remove_fields_from_userprofile' );
