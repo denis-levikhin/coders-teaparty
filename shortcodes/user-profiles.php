@@ -21,7 +21,6 @@ if( ! function_exists( 'ct_user_profile_general_info' ) ) {
             $user_meta = get_user_meta( $user_obj->data->ID );
             $user_nicename = $user_meta['nickname'][0];
             $user_bio = $user_meta['description'][0];
-            //$output .= var_export($user_meta, true);
             $user_position = $user_meta['position'][0];
             $user_cover_image_id = $user_meta['cover'][0];
             $user_cover_image_src = wp_get_attachment_image_src( $user_cover_image_id, 'large' );
@@ -58,7 +57,41 @@ if( ! function_exists( 'ct_user_profile_general_info' ) ) {
 if( ! function_exists( 'ct_user_profile_picture' ) ) {
     add_shortcode( 'user_profile_picture', 'ct_user_profile_picture' );
     function ct_user_profile_picture( $atts, $content, $shortcode_tag ) {
-        
+        $output = '';
+        $classes = 'user-profile-block user-profile-picture ';
+
+        if( get_post_type( get_the_id() ) !== 'ct-user-profile' ) {
+            return '<p class="error-message">Invalid use of shortcode - this post is not a User Profile.</p>';
+        }
+
+        $profile_user_id = get_post_meta( get_the_id(), 'profile_user_id', TRUE ); 
+        $user_obj = get_user_by( 'id', $profile_user_id );
+
+        if ( $user_obj ) {
+            $user_meta = get_user_meta( $user_obj->data->ID );
+            $user_status = $user_meta['status'][0];
+            $no_picture_set = empty( get_avatar_data( $profile_user_id )['found_avatar'] );
+
+            if( $no_picture_set ) {
+                $classes .= 'no-profile-picture ';
+            }
+
+            // Filter $classes via the child theme to customize specific users' profiles without commiting changes
+            $output .= "<section class='" . apply_filters( 'ct_user_profile_block_classes', $classes, $shortcode_tag ) . "'>";
+                $output .= "<div class='user-profile-block-header'></div>";
+                $output .= '<div class="user-profile-block-content">';
+                    $output .= '<div>';
+                        $output .=  $no_picture_set ? '<div>' : '';
+                            $output .= get_avatar( $profile_user_id, 512 );
+                            $output .=  $no_picture_set ? '<span>This user did not set profile picture yet.</span>' : '';
+                        $output .=  $no_picture_set ? '</div>' : '';
+                        $output .=  ! empty( $user_status ) ? "<span class='user-status'>\"$user_status\"</span>" : '';
+                    $output .= "</div>";
+                $output .= '</div>';
+            $output .= '</section>';
+        }
+
+        return $output;
     }
 }
 

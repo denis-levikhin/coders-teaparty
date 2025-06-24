@@ -8,6 +8,7 @@
 .user-profile-block-header {
   padding: .5em 1em;
   background: var(--secondary-color);
+  min-height: 1em;
 }
 
 .user-profile-block-header > span {
@@ -40,7 +41,17 @@
 .user-profile-block-header.with-cover .user-name {
   text-shadow: 0 0 5px var(--primary-color);
 }
+
 .user-profile-block-header.with-cover .user-position {
   background-color: var(--secondary-color);
 }
 
+.user-profile-picture img {
+  width: 100%;
+}
+
+.user-status {
+  font-style: italic;
+  color: gray;
+  text-transform: lowercase;
+}
