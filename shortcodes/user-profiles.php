@@ -23,6 +23,7 @@ if( ! function_exists( 'ct_user_profile_general_info' ) ) {
             $user_bio = $user_meta['description'][0];
             $user_position = $user_meta['position'][0] ?: __( 'Dude', 'coders-teaparty' );
             $user_cover_image_id = $user_meta['cover'][0];
+            $section_headers_color = $user_meta['section_headers_color'][0] ?: 'var(--secondary-color)';
             $user_cover_image_src = wp_get_attachment_image_src( $user_cover_image_id, 'large' );
             $user_cover_image_src_attr = !empty( $user_cover_image_src ) ? $user_cover_image_src[0] : '';
 
@@ -36,7 +37,8 @@ if( ! function_exists( 'ct_user_profile_general_info' ) ) {
                 if( !empty( $user_cover_image_src_attr ) ) {
                     $output .= "<div class='user-profile-block-header with-cover' style='background: top / cover url(\"$user_cover_image_src_attr\")'>";
                 } else {
-                    $output .= "<div class='user-profile-block-header'>";
+                    $header_style = " style='background: $section_headers_color;' ";
+                    $output .= "<div class='user-profile-block-header' $header_style>";
                 }
                         $output .= "<span>";
                             $output .= "<h3 class='user-name'>$user_nicename</h3>";
@@ -73,6 +75,7 @@ if( ! function_exists( 'ct_user_profile_picture' ) ) {
             $user_meta = get_user_meta( $user_obj->data->ID );
             $user_status = $user_meta['status'][0];
             $no_picture_set = empty( get_avatar_data( $profile_user_id )['found_avatar'] );
+            $section_headers_color = $user_meta['section_headers_color'][0] ?: 'var(--secondary-color)';
 
             if( $no_picture_set ) {
                 $classes .= 'no-profile-picture ';
@@ -81,7 +84,8 @@ if( ! function_exists( 'ct_user_profile_picture' ) ) {
             // Filter $classes via the child theme to customize specific users' profiles without commiting changes
             $output .= "<section class='" . apply_filters( 'ct_user_profile_block_classes', $classes, $shortcode_tag ) . "'>";
                 $output .= '<div class="masonry-content">';
-                    $output .= "<div class='user-profile-block-header'></div>";
+                    $header_style = " style='background: $section_headers_color;' ";
+                    $output .= "<div class='user-profile-block-header' $header_style></div>";
                     $output .= '<div class="user-profile-block-content">';
                         $output .= '<div>';
                             $output .=  $no_picture_set ? '<div>' : '';
@@ -121,11 +125,13 @@ if( ! function_exists( 'ct_user_profile_survey' ) ){
             }
             $writing_preferences = $user_meta['writing_preferences'][0];
             $social_links = $user_meta['social_links'][0];
+            $section_headers_color = $user_meta['section_headers_color'][0] ?: 'var(--secondary-color)';
 
             // Filter $classes via the child theme to customize specific users' profiles without commiting changes
             $output .= "<section class='" . apply_filters( 'ct_user_profile_block_classes', $classes, $shortcode_tag ) . "'>";
                 $output .= '<div class="masonry-content">';
-                    $output .= "<div class='user-profile-block-header'>";
+                    $header_style = " style='background: $section_headers_color;' ";
+                    $output .= "<div class='user-profile-block-header' $header_style>";
                     $output .= '<span>' . __( "Survey", 'coders-teaparty' ) . '</span>';
                     $output .= "</div>";
                     $output .= '<div class="user-profile-block-content">';
@@ -177,7 +183,9 @@ add_shortcode( 'user_profile_latest_articles', 'ct_user_profile_latest_articles'
 
         $profile_user_id = get_post_meta( get_the_id(), 'profile_user_id', TRUE ); 
         $user_obj = get_user_by( 'id', $profile_user_id );
-        if ( $user_obj /* ensure user exists even if we dont need the object itself */ ) {
+        if ( $user_obj ) {
+            $user_meta = get_user_meta( $user_obj->data->ID );
+            $section_headers_color = $user_meta['section_headers_color'][0] ?: 'var(--secondary-color)';
             $query_args = array(
                 'author' => $profile_user_id,
                 'ignore_sticky_posts' => TRUE,
@@ -190,7 +198,8 @@ add_shortcode( 'user_profile_latest_articles', 'ct_user_profile_latest_articles'
             $the_query = new WP_Query( $query_args );
             $output .= "<section class='" . apply_filters( 'ct_user_profile_block_classes', $classes, $shortcode_tag ) . "'>";
                 $output .= '<div class="masonry-content">';
-                    $output .= "<div class='user-profile-block-header'>";
+                    $header_style = " style='background: $section_headers_color;' ";
+                    $output .= "<div class='user-profile-block-header' $header_style>";
                     $output .= __( "Latest posts", 'coders-teaparty' );
                     $output .= "</div>";
                     $output .= '<div class="user-profile-block-content">';
