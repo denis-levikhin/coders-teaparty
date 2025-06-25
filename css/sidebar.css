@@ -121,19 +121,24 @@
 	padding: 2rem;
 }
 
-.sidebar .website-main-navigation a::before {
+.website-main-navigation a::before {
 	content: url("../media/icons/cup-of-tea.png");
 	padding-right: .25em;
 	/* ul padding is 1.25em where 1em is an icon and 0.25em is a padding right */
 	margin-left: -1em;
 	transition: all 180ms ease-out;
 }
-  
-.sidebar .website-main-navigation .menu-item a:hover::before  {
+
+.website-main-navigation .menu-item.selected a {
+	color: var(--link-hover-color);
+}
+
+.website-main-navigation .menu-item.selected a::before,
+.website-main-navigation .menu-item a:hover::before  {
 	margin-left: 0;
 }
-  
-.sidebar .website-main-navigation a::after {
+
+.website-main-navigation a::after {
 	display: none;
 }
 

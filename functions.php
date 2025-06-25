@@ -17,7 +17,7 @@ add_theme_support( 'responsive-embeds' );
 function add_theme_menu_support() {
     register_nav_menus(
       array(
-        'main-header-menu' => __( 'Main Website Menu (Header)' )
+        'main-header-menu' => __( 'Main Website Menu (Header)' , 'coders-teaparty' )
       )
     );
   }
@@ -27,6 +27,7 @@ function adjust_menu_widget_args($nav_menu_args, $nav_menu, $args){
     if( $args['id'] === 'primary' ) { // < This is where we check if it's the right widget
 		return array_merge( $nav_menu_args, array(
 			'menu_class' => 'website-main-navigation ignore-visited',
+			'theme_location' => 'main-header-menu',
 	   ) );
 	}
 }
@@ -140,3 +141,17 @@ add_filter( 'is_post_type_viewable', function( $is_viewable, $post_type ) {
 
 remove_rewrite_tag( '%microblog%' );
 add_action( 'after_switch_theme', 'flush_rewrite_rules' );
+
+if( ! function_exists( 'ct_hilight_active_menu_item' ) ) {
+	function ct_hilight_active_menu_item( $classes, $item, $args ) {
+		$server_url = urldecode( $_SERVER['REQUEST_URI'] );
+		$server_url = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}{$server_url}";
+
+		if ( 'main-header-menu' === $args->theme_location AND str_contains( $server_url,$item->url ) ) {
+			$classes[] = "selected";
+		}
+
+		return $classes;
+	}
+	add_filter( 'nav_menu_css_class' , 'ct_hilight_active_menu_item' , 10, 4 );
+}

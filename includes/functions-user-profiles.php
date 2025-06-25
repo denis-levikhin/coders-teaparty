@@ -44,6 +44,10 @@ if( ! function_exists( 'ct_register_user_profiles_post_type' ) ) {
 					'editor',
 					'thumbnail'					
 				),
+				'rewrite' => array(
+					'slug' => 'dudes',
+					'with_front' => FALSE,
+				),
 			) 
 		);
 	}
