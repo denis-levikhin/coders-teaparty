@@ -55,3 +55,23 @@
   color: gray;
   text-transform: lowercase;
 }
+
+.user-profile-survey .user-profile-block-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-profile-survey .survey-row-title {
+  font-weight: bold;
+  display: inline-block;
+  margin-right: .25em;
+}
+
+.user-profile-latest-articles ul {
+  margin: 0;
+}
+
+.user-profile-latest-articles .post-date {
+  font-style: italic;
+  color: gray;
+}

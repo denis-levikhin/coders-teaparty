@@ -9,7 +9,8 @@ if( ! function_exists( 'ct_remove_fields_from_userprofile' ) ) {
                 .user-display-name-wrap,
                 .user-url-wrap,
                 .user-profile-picture,
-                .user-last-name-wrap { 
+                .user-last-name-wrap,
+				#simple-local-avatar-section .ratings-row { 
                     display: none; 
                 }
             </style>";
@@ -56,7 +57,7 @@ if( ! function_exists( 'ct_create_user_profile_with_user' ) ){
 	function ct_create_user_profile_with_user( $user_id, $userdata ) {
 		$postarr = array(
 			'post_title' => $userdata['first_name'] ?: $userdata['user_login'],
-			'post_content' => '',
+			'post_content' => '[user_profile_general][user_profile_picture][user_profile_latest_articles][user_profile_survey]',
 			'post_status' => 'publish',
 			'post_type' => 'ct-user-profile',
 			'meta_input' => array(

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Coders Teaparty v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-06-23 16:42+0800\n"
+"POT-Creation-Date: 2025-06-25 14:06+0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: CodersTeaparty <oldteaowl2@gmail.com>\n"
@@ -81,10 +81,38 @@ msgstr "Статьи"
 msgid "Search for: "
 msgstr "Поиск: "
 
-#: shortcodes/user-profiles.php:31
+#: shortcodes/user-profiles.php:24
+msgid "Dude"
+msgstr "Чувак"
+
+#: shortcodes/user-profiles.php:30
 msgid "This user have not shared anything about themselves yet."
-msgstr "Этот пользователь еще не поделился никакой информацией о себе."
+msgstr "Этот пользователь пока ничего о себе не рассказал."
 
 #: shortcodes/user-profiles.php:48
 msgid "Bio:"
 msgstr "Био:"
+
+#: shortcodes/user-profiles.php:129
+msgid "Survey"
+msgstr "Анкета"
+
+#: shortcodes/user-profiles.php:134
+msgid "INFP-type:"
+msgstr "INFP-тип:"
+
+#: shortcodes/user-profiles.php:140
+msgid "Writing Preferences:"
+msgstr "Пишу о:"
+
+#: shortcodes/user-profiles.php:146
+msgid "Social Links:"
+msgstr "Другие странички:"
+
+#: shortcodes/user-profiles.php:185
+msgid "Latest posts"
+msgstr "Последние посты"
+
+#: shortcodes/user-profiles.php:205
+msgid "This user did not write any posts yet."
+msgstr "Этот пользователь пока не писал статей."

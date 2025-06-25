@@ -1,29 +1,31 @@
 /* See https://medium.com/@andybarefoot/a-masonry-style-layout-using-css-grid-8c663d355ebb */
 
-function resizeGridItem(item) {
-    grid = document.getElementsByClassName("masonry-grid")[0];
-    rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-    rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-    rowSpan = Math.ceil((item.querySelector('.content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-    item.style.gridRowEnd = "span " + rowSpan;
-}
-
-function resizeAllGridItems() {
-    allItems = document.getElementsByClassName("item");
-    for (x = 0; x < allItems.length; x++) {
-        resizeGridItem(allItems[x]);
+jQuery( window ).on( 'load', function(){
+    function resizeGridItem(item) {
+        grid = document.getElementsByClassName("masonry-grid")[0];
+        rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+        rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
+        rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+        item.style.gridRowEnd = "span " + rowSpan;
     }
-}
 
-function resizeInstance(instance) {
-    item = instance.elements[0];
-    resizeGridItem(item);
-}
+    function resizeAllGridItems() {
+        allItems = document.getElementsByClassName("masonry-item");
+        for (x = 0; x < allItems.length; x++) {
+            resizeGridItem(allItems[x]);
+        }
+    }
 
-window.onload = resizeAllGridItems();
-window.addEventListener("resize", resizeAllGridItems);
+    function resizeInstance(instance) {
+        item = instance.elements[0];
+        resizeGridItem(item);
+    }
 
-allItems = document.getElementsByClassName("item");
-for (x = 0; x < allItems.length; x++) {
-    imagesLoaded(allItems[x], resizeInstance);
-}
+    resizeAllGridItems();
+    window.addEventListener("resize", resizeAllGridItems);
+
+    allItems = document.getElementsByClassName("masonry-item");
+    for (x = 0; x < allItems.length; x++) {
+        imagesLoaded(allItems[x], resizeInstance);
+    }
+});
