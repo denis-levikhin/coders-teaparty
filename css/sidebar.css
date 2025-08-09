@@ -135,7 +135,7 @@
 
 .website-main-navigation .menu-item.selected a::before,
 .website-main-navigation .menu-item a:hover::before  {
-	margin-left: 0;
+	padding-left: 1em;
 }
 
 .website-main-navigation a::after {

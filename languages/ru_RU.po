@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Coders Teaparty v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-06-25 14:06+0800\n"
+"POT-Creation-Date: 2025-06-25 15:44+0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: CodersTeaparty <oldteaowl2@gmail.com>\n"
@@ -52,20 +52,20 @@ msgstr "Комментарии закрыты."
 msgid "Main Website Menu (Header)"
 msgstr "Главное меню"
 
-#: functions.php:81
+#: functions.php:82
 msgid "Primary Sidebar"
 msgstr "Основной сайдбар"
 
-#: functions.php:107
+#: functions.php:108
 #, php-format
 msgid "By <span class=\"comment-meta comment-author\">%s</span>"
 msgstr ""
 
-#: functions.php:113
+#: functions.php:114
 msgid "Your comment is awaiting moderation."
 msgstr "Ваш комментарий ожидает модерации."
 
-#: functions.php:124
+#: functions.php:125
 msgid "Edit comment"
 msgstr "Редактировать комментарий"
 
@@ -85,34 +85,34 @@ msgstr "Поиск: "
 msgid "Dude"
 msgstr "Чувак"
 
-#: shortcodes/user-profiles.php:30
+#: shortcodes/user-profiles.php:31 shortcodes/user-profiles.php:162
 msgid "This user have not shared anything about themselves yet."
 msgstr "Этот пользователь пока ничего о себе не рассказал."
 
-#: shortcodes/user-profiles.php:48
+#: shortcodes/user-profiles.php:50
 msgid "Bio:"
 msgstr "Био:"
 
-#: shortcodes/user-profiles.php:129
+#: shortcodes/user-profiles.php:135
 msgid "Survey"
 msgstr "Анкета"
 
-#: shortcodes/user-profiles.php:134
+#: shortcodes/user-profiles.php:140
 msgid "INFP-type:"
 msgstr "INFP-тип:"
 
-#: shortcodes/user-profiles.php:140
+#: shortcodes/user-profiles.php:146
 msgid "Writing Preferences:"
 msgstr "Пишу о:"
 
-#: shortcodes/user-profiles.php:146
+#: shortcodes/user-profiles.php:152
 msgid "Social Links:"
 msgstr "Другие странички:"
 
-#: shortcodes/user-profiles.php:185
+#: shortcodes/user-profiles.php:203
 msgid "Latest posts"
 msgstr "Последние посты"
 
-#: shortcodes/user-profiles.php:205
+#: shortcodes/user-profiles.php:223
 msgid "This user did not write any posts yet."
 msgstr "Этот пользователь пока не писал статей."

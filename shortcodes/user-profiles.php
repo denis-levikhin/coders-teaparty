@@ -191,7 +191,7 @@ add_shortcode( 'user_profile_latest_articles', 'ct_user_profile_latest_articles'
                 'ignore_sticky_posts' => TRUE,
                 'no_found_rows' => TRUE,
                 'orderby' => 'modified',
-                'post_status' => 'published',
+                'post_status' => 'publish',
                 'posts_per_page' => 3,
             );
 

@@ -47,7 +47,8 @@ if( ! function_exists( 'ct_register_user_profiles_post_type' ) ) {
 				'rewrite' => array(
 					'slug' => 'dudes',
 					'with_front' => FALSE,
-				),
+				),        
+				'menu_icon' => 'dashicons-id',
 			) 
 		);
 	}
