@@ -4,11 +4,8 @@
 			<img src="<?php echo get_stylesheet_directory_uri() . '/media/icons/close-svgrepo-com.svg'; ?>" alt="menu-close-button" tabindex="0">
 		</div>
 		<div class="sidebar-level-1 text-centered">
-			<?php
-				$website_url = get_site_url();
-				echo "<a id='le-fox' class='no-hover-effects' href='$website_url'></a>";
-			?>
 			<?php 
+				$website_url = get_site_url();
 				echo "<h1 class='website-title'>";
 				echo "<a href='$website_url'>";
 				bloginfo('name');

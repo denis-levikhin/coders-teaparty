@@ -17,6 +17,7 @@
             </article>
       <?php endif; ?>
     </div>
+    <?php ct_the_posts_pagination() ?>
   </section>
 </main>
 <?php get_footer(); ?>

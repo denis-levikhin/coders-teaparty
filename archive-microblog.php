@@ -29,7 +29,6 @@
           </article>
       <?php endif; ?>
     </div>
-    <?php wpbeginner_numeric_posts_nav() ?>
   </section>
 </main>
 <?php get_footer(); ?>

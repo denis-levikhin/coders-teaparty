@@ -76,6 +76,11 @@
 	position: relative;
 	background-size: contain;
     height: 25vmin;
+	background-size: contain;
+	background-image: url("../media/le-fox.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
 }
 
 .sidebar-level-1 .website-title {
