@@ -148,7 +148,8 @@ a:hover {
 	color: var(--link-hover-color);
 }
 
-.content-area a::after {
+.content-area p > a::after,
+.ct-breadcrumbs a::after {
 	background: none repeat scroll 0 0 transparent;
 	bottom: 0;
 	content: "";
@@ -163,17 +164,18 @@ a:hover {
 	margin-top: 1.25em;
   }
   
-.content-area a:hover::after {
+.content-area p > a:hover::after,
+.ct-breadcrumbs a:hover::after {
 	width: 100%;
 }
 
-.content-area a.no-hover-effects, 
-.content-area .no-hover-effects a {
+.content-area p > a.no-hover-effects, 
+.content-area p > .no-hover-effects a {
 	padding-bottom: initial;
 }
 
-.content-area a.no-hover-effects::after, 
-.content-area .no-hover-effects a::after  {
+.content-area p > a.no-hover-effects::after, 
+.content-area p > .no-hover-effects a::after  {
 	display: none;
 }
 
@@ -304,25 +306,23 @@ html {
 	margin: auto;
 }
 
-.content-area .article-full img {
-	max-width: calc(100vw - 4rem); /* prevent images from overflowing */
+.content-area .article-full .gallery {
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+.content-area .article-full p img {
+	max-width: 100%; /* prevent images from overflowing */
 	height: auto;
-}
-
-.content-area h4>a::before {
-	content: "#";
-	opacity: 0;
-	margin-left: -1em;
-	transition: all 0.25s;
-}
-
-.content-area h4>a:hover::before {
-	opacity: 1;
-	margin-left: 0;
 }
 
 .article-full {
 	font-size: clamp(1rem, -0.231vw + 1.185rem, 1.125rem);
+}
+
+.article-full p {
+    text-indent: 1em each-line;
 }
 
 /* =============== PAGINATION STYLES =============== */
