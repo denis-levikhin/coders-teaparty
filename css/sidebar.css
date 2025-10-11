@@ -52,22 +52,22 @@
 	font-family: "Poiret One";
 }
 
-.sidebar .searchform > div {
+.sidebar .search-form {
 	display: flex;
 }
 
-.sidebar .searchform input[type="text"] {
+.sidebar .search-form input[type="search"] {
 	width: 100%;
 	border-radius: 5px 0 0 5px;
 	border: none;
 	box-shadow: none;
 }
 
-.searchform input[type="submit"] {
+.search-form input[type="submit"] {
 	border-radius: 0 5px 5px 0;
 }
 
-.sidebar .searchform .screen-reader-text {
+.sidebar .search-form .screen-reader-text {
 	display: none;
 }
 
@@ -145,6 +145,12 @@
 
 .website-main-navigation a::after {
 	display: none;
+}
+
+.website-main-navigation .menu-item-description {
+  font-family: var(--default-font-family) !important;
+  font-size: 0.9rem;
+  color: gray;
 }
 
 footer {

@@ -7,7 +7,18 @@
         <?php echo ct_get_breadcrumbs(); ?>
           <header>
             <h2><?php the_title(); ?></h2>
-            By: <?php the_author(); ?>
+            <?php
+              $author_id = get_post_field ( 'post_author', get_the_ID() );
+              $author_profile_page_url = ct_get_user_profile_page_url( $author_id );
+            ?>
+            <?php
+              echo 'By: ';
+              if ( $author_profile_page_url ) {
+                echo sprintf( "<a href='%s'>%s</a>", $author_profile_page_url, get_the_author() );
+              } else {
+                the_author();
+              }
+            ?>
           </header>
         <?php the_content(); ?>
         </article>

@@ -47,6 +47,7 @@
 
 .user-profile-picture img {
   width: 100%;
+  height: fit-content;
 }
 
 .user-status {

@@ -108,3 +108,27 @@ if( ! function_exists( 'ct_disable_article_markup_for_profiles' ) ){
 
 	add_action( 'template_redirect', 'ct_disable_article_markup_for_profiles' );
 }
+
+/**
+ * >>> Get user profile front end url
+ * @return string user profile url or FALSE
+*/
+if( ! function_exists( 'ct_get_user_profile_page_url' ) ){ 
+	function ct_get_user_profile_page_url( $user_id ){
+		if ( empty( $user_id ) OR $user_id < 0 ) {
+			return -1;
+		}
+		$args = array(
+			'post_type' => 'ct-user-profile',
+			'post_status' => 'publish',
+			'meta_key' => 'profile_user_id',
+			'meta_value' => $user_id,
+		);
+		$query = new WP_Query( $args );
+		if ( ! empty( $query->posts )  ) {
+        	return get_permalink( $query->posts[0] ); // only count for the first post
+        } else {
+			return FALSE;
+		}
+	}
+}

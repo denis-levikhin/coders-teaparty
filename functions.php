@@ -7,11 +7,14 @@ require_once get_stylesheet_directory() . '/shortcodes/user-profiles.php';
 /**
  * General theme functions, admin menus and configuration.
  * Add your reusable functions not related to theme configuration to /includes/functions.php
+ * 
+ * Also, I wish all mom's sofa-based hackers to suck a humongous russian dick
 */
 
 // >> Indicate supported features
-add_theme_support('post-thumbnails');
+add_theme_support( 'post-thumbnails' );
 add_theme_support( 'responsive-embeds' );
+add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script' ) );
 
 // === organize nav menus === //
 function add_theme_menu_support() {
@@ -60,17 +63,21 @@ function codersteaparty_enqueue_scripts_and_styles() {
   	wp_enqueue_script( 'imagesloaded-js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js', array(), FALSE, array('strategy' => 'async'));
   	wp_enqueue_script( 'masonry-js',  get_stylesheet_directory_uri() . '/js/masonry.js', array( 'imagesloaded-js' ), FALSE, array('strategy' => 'defer', 'in_footer' => TRUE ));
 
-    if( is_singular( 'post' ) ) {
+    if ( is_singular( 'post' ) ) {
 		wp_enqueue_style( 'comments' );
 	}
 
-  	if( is_archive( 'microblog' ) ) {
+  	if ( is_archive( 'microblog' ) ) {
 		wp_enqueue_style( 'microblog_styles' );
   	}
 	
-	if( is_singular( 'ct-user-profile' ) ) {
+	if ( is_singular( 'ct-user-profile' ) ) {
 		wp_enqueue_style( 'user_profile_styles' );
   	}
+	
+	if ( is_admin() AND ! wp_doing_ajax() ) {
+		wp_enqueue_media();
+	}
 }
 add_action( 'wp_enqueue_scripts', 'codersteaparty_enqueue_scripts_and_styles' );
 
@@ -154,4 +161,16 @@ if( ! function_exists( 'ct_hilight_active_menu_item' ) ) {
 		return $classes;
 	}
 	add_filter( 'nav_menu_css_class' , 'ct_hilight_active_menu_item' , 10, 4 );
+}
+
+// >>> Add menu descriptions
+add_filter( 'nav_menu_item_title', 'ct_add_nav_menu_description', 10, 4 );
+
+if ( ! function_exists( 'ct_add_nav_menu_description' ) ) {
+	function ct_add_nav_menu_description( $item_output, $menu_item_obj, $depth, $args ){
+		if ( ! empty( $menu_item_obj->description ) ) {
+			$item_output .= '<br /><span class="menu-item-description">' . $menu_item_obj->description . '</span>';
+		}
+		return $item_output;
+	}
 }
