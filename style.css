@@ -323,8 +323,39 @@ html {
 	font-size: clamp(1rem, -0.231vw + 1.185rem, 1.125rem);
 }
 
-.article-full :not(li > p) p {
+.article-full > p {
     text-indent: 1em each-line;
+}
+
+.article-full > p > a {
+    text-indent: 0;
+}
+
+.article-full li > p {
+  margin: 0;
+}
+
+/* Post tags */
+.post-tags {
+  display: flex;
+  gap: .5em;
+  margin: 1em 0;
+  align-items: baseline;
+}
+
+.post-tag {
+  color: black;
+  display: inline-block;
+  padding: .15em .75em;
+  border-radius: .25em;
+  background: var(--button-color);
+  transition: color 0.15s;
+}
+.post-tag .tag-post-count {
+  padding-left: .75em;
+}
+.post-tags > a:hover > .post-tag {
+  background: var(--button-hover-color);
 }
 
 /* =============== PAGINATION STYLES =============== */
@@ -436,10 +467,14 @@ nav.pagination .next {
 }
 
 /* --- WP default Gallery shortcode re-styling --- */
-.gallery .gallery-icon {
+.gallery .gallery-item {
   display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
+  
   align-items: center;
-  height: 100%;
+  text-align: center;
 }
 
 /* =============== MOBILE STYLES =============== */
