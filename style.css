@@ -16,11 +16,6 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 /* =============== GENERAL STYLES =============== */
 
 @font-face {
-	font-family: 'Abril Fatface';
-	src: url('assets/fonts/abril-fatface/AbrilFatface-Regular.ttf') format('truetype')
-}
-
-@font-face {
 	font-family: 'Poiret One';
 	src: url('assets/fonts/Poiret_One/PoiretOne-Regular.ttf') format('truetype')
 }
@@ -350,12 +345,21 @@ html {
   border-radius: .25em;
   background: var(--button-color);
   transition: color 0.15s;
+  box-shadow: 1px 1px gray;
 }
 .post-tag .tag-post-count {
   padding-left: .75em;
 }
 .post-tags > a:hover > .post-tag {
   background: var(--button-hover-color);
+}
+.tag-description {
+  position: fixed;
+  padding: .15em .5em;
+  background: lightgray;
+  border-radius: 3px;
+  display: none;
+  z-index: 1;
 }
 
 /* =============== PAGINATION STYLES =============== */

@@ -32,12 +32,15 @@
                     echo __( 'Tags' ) . ':&nbsp;';
                     foreach ( $tags as $tag ) {
                         echo "<a href='" . get_term_link( $tag ) . "'>";
-                        echo '<span class="post-tag">';
+                        echo "<span class='post-tag' data-id='$tag->term_id'>";
                         echo "<span class='tag-name'>$tag->name</span>";
                         echo "<span class='tag-post-count'>$tag->count</span>";
-                        //echo "<span class='tag-description'>$tag->description</span>";
                         echo '</span>';
                         echo '</a>';
+                        // do not constrain the description tooltip with parent size
+                        if ( ! empty( $tag->description ) ) {
+                          echo "<span class='tag-description' id='tag-$tag->term_id-description'>$tag->description</span>";
+                        }
                     }
                     echo '</div>';
                 }
