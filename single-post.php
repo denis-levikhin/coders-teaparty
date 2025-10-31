@@ -11,8 +11,6 @@
                 // Post author
                 $author_id = get_post_field ( 'post_author', get_the_ID() );
                 $author_profile_page_url = ct_get_user_profile_page_url( $author_id );
-            ?>
-            <?php
                 $author_string = $author_profile_page_url
                                 ?  sprintf( "<a href='%s'>%s</a>", $author_profile_page_url, get_the_author() )
                                 : get_the_author();

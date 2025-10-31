@@ -121,21 +121,21 @@ a {
 
 /* =============== TABLE STYLES =============== */
 table {
-  width: 100%;
+  	width: 100%;
 }
 
 tr:nth-of-type(2n+1) {
-  background-color: #f6f9fb;
+	background-color: #f6f9fb;
 }
 
 th {
-  background-color: var(--secondary-color);  
-  padding: .25em 0;
+	background-color: var(--secondary-color);  
+	padding: .25em 0;
 }
 
 td {
-  text-align: center;
-  padding: .25em 0;
+	text-align: center;
+	padding: .25em 0;
 }
 
 /* =============== LINK STYLES =============== */
@@ -262,7 +262,7 @@ html {
   ::-webkit-inner-spin-button,
   ::-webkit-outer-spin-button
 ) {
-  color: var(--brand);
+	color: var(--brand);
 }
 
 /* =============== CONTENT STYLES =============== */
@@ -304,9 +304,9 @@ html {
 }
 
 .content-area .article-full .gallery {
-  display: flex;
-  gap: 1em;
-  justify-content: space-between;
+	display: flex;
+	gap: 1em;
+	justify-content: space-between;
 }
 
 .content-area .article-full img {
@@ -327,39 +327,54 @@ html {
 }
 
 .article-full li > p {
-  margin: 0;
+	margin: 0;
+}
+
+.blog .posts-list {
+    display: grid;
+    grid-template-columns: repeat( 2, 1fr );
+    grid-gap: 1.5em; 
+}
+
+.article-loop .wp-post-image {
+	height: 250px;
+	width: auto;
+	max-width: 100%;
+	object-fit: contain;
+	object-position: bottom;
 }
 
 /* Post tags */
 .post-tags {
-  display: flex;
-  gap: .5em;
-  margin: 1em 0;
-  align-items: baseline;
+	display: flex;
+	gap: 0.25em;
+	margin: 1em 0;
+	align-items: baseline;
+	flex-wrap: wrap;
 }
 
 .post-tag {
-  color: black;
-  display: inline-block;
-  padding: .15em .75em;
-  border-radius: .25em;
-  background: var(--button-color);
-  transition: color 0.15s;
-  box-shadow: 1px 1px gray;
+	color: black;
+	display: inline-block;
+	padding: .15em .75em;
+	border-radius: .25em;
+	background: var(--button-color);
+	transition: color 0.15s;
+	box-shadow: 1px 1px gray;
 }
 .post-tag .tag-post-count {
-  padding-left: .75em;
+  	padding-left: .75em;
 }
 .post-tags > a:hover > .post-tag {
-  background: var(--button-hover-color);
+  	background: var(--button-hover-color);
 }
 .tag-description {
-  position: fixed;
-  padding: .15em .5em;
-  background: lightgray;
-  border-radius: 3px;
-  display: none;
-  z-index: 1;
+	position: fixed;
+	padding: .15em .5em;
+	background: lightgray;
+	border-radius: 3px;
+	display: none;
+	z-index: 1;
 }
 
 /* =============== PAGINATION STYLES =============== */
@@ -462,23 +477,23 @@ nav.pagination .next {
 /* --- Starry Sky animation on background by Jed Crowther https://codepen.io/jedcrowther/pen/wdzQvy --- */
 
 .star {
-  box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.4);
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  border-radius: 2px;
-  background-color: white;
+	box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.4);
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	border-radius: 2px;
+	background-color: white;
 }
 
 /* --- WP default Gallery shortcode re-styling --- */
 .gallery .gallery-item {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  width: 100%;
-  
-  align-items: center;
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	width: 100%;
+	
+	align-items: center;
+	text-align: center;
 }
 
 /* =============== MOBILE STYLES =============== */
@@ -492,15 +507,15 @@ nav.pagination .next {
 	}
 
     .mobile-header {
-      display: block;
-      height: 4rem;
-      width: 100vw;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 10;
-      background: #34305a;    
-	  box-shadow: 2px 0px 7px darkcyan;
+		display: block;
+		height: 4rem;
+		width: 100vw;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 10;
+		background: #34305a;    
+		box-shadow: 2px 0px 7px darkcyan;
     }
 
 	
@@ -510,6 +525,10 @@ nav.pagination .next {
 		padding: 4rem 2rem;
 	}
 
+	.blog .posts-list {
+		display: flex;
+		flex-direction: column;
+	}
     .mobile-menu-switch {
         margin: .5rem;
         margin-left: auto;
