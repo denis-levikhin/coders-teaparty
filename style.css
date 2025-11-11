@@ -21,6 +21,11 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 }
 
 @font-face {
+	font-family: 'Festus Regular';
+	src: url('assets/fonts/Festus\ Regular.ttf') format('truetype')
+}
+
+@font-face {
 	font-family: 'Hymmnos';
 	src: url('assets/fonts/hymmnos.ttf') format('truetype')
 }
@@ -87,6 +92,11 @@ h2 {
   	margin-bottom: 0.5em;
 }
 
+h3 {
+  font-family: 'Festus Regular', cursive;
+  font-size: 28px;
+}
+
 h1,
 h2,
 h3,
@@ -96,10 +106,6 @@ h6 {
 	text-align: inherit;
 	font-optical-sizing: auto;
 	font-weight: 700;
-}
-
-:is(h3, h4, h5, h6) {
-	letter-spacing: 0.075em;
 }
 
 h1 {
@@ -331,17 +337,38 @@ html {
 }
 
 .blog .posts-list {
-    display: grid;
-    grid-template-columns: repeat( 2, 1fr );
-    grid-gap: 1.5em; 
+    display: flex;
+	flex-direction: column;
+    gap: 1.5em; 
+}
+
+.blog .article-loop {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+}
+
+.blog .article-loop a:has(.wp-post-image) {
+  flex: 1 2 250px;
+  height: 100%;
+}
+
+.article-loop header {
+  flex: 2 1 70%;
 }
 
 .article-loop .wp-post-image {
-	height: 250px;
-	width: auto;
-	max-width: 100%;
-	object-fit: contain;
-	object-position: bottom;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.blog .article-loop header > :first-child {
+  margin-top: 0;
+}
+.blog .article-loop header > :last-child {
+  margin-bottom: 0;
 }
 
 /* Post tags */
