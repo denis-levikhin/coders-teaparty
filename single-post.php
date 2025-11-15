@@ -30,7 +30,7 @@
                     echo __( 'Tags' ) . ':&nbsp;';
                     foreach ( $tags as $tag ) {
                         echo "<a href='" . get_term_link( $tag ) . "'>";
-                        echo "<span class='post-tag' data-id='$tag->term_id'>";
+                        echo "<span class='post-tag as-button' data-id='$tag->term_id'>";
                         echo "<span class='tag-name'>$tag->name</span>";
                         echo "<span class='tag-post-count'>$tag->count</span>";
                         echo '</span>';

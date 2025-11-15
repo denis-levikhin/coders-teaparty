@@ -10,8 +10,9 @@
               </a>
               <header>
                 <h3><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+                <?php the_excerpt(); ?>
                 <?php
-                                // Post Tags
+                // Post Tags
                 $tag_args = array(
                     'taxonomy' => 'post_tag',
                     'hide_empty' => FALSE,
@@ -23,22 +24,18 @@
                 if ( $tags ) {
                     echo '<div class="post-tags">';
                     echo __( 'Tags' ) . ':&nbsp;';
-                    foreach ( $tags as $tag ) {
+                    for ( $i = 0; $i < count( $tags ); $i++ ) {
+                        $tag = $tags[ $i ];
                         echo "<a href='" . get_term_link( $tag ) . "'>";
-                        echo "<span class='post-tag' data-id='$tag->term_id'>";
-                        echo "<span class='tag-name'>$tag->name</span>";
-                        echo "<span class='tag-post-count'>$tag->count</span>";
-                        echo '</span>';
+                          echo "<span class='post-tag as-button'>";
+                            echo "<span class='tag-name'>$tag->name</span>";
+                          echo '</span>';
                         echo '</a>';
-                        // do not constrain the description tooltip with parent size
-                        if ( ! empty( $tag->description ) ) {
-                          echo "<span class='tag-description' id='tag-$tag->term_id-description'>$tag->description</span>";
-                        }
+                        echo '<span class="tag-separator">' . ( $i != ( count( $tags ) - 1 ) ? ', ' : '') . '</span>';
                     }
                     echo '</div>';
                 }
                 ?>
-                <?php the_excerpt(); ?>
               </header>
         </article>
       <?php endwhile; else : ?>
