@@ -360,7 +360,7 @@ html {
   height: 100%;
 }
 
-.article-loop header {
+.article-loop > div {
   flex: 2 1 70%;
 }
 
@@ -371,10 +371,10 @@ html {
   object-position: center;
 }
 
-.blog .article-loop header > :first-child {
+.blog .article-loop > div > :first-child {
   margin-top: 0;
 }
-.blog .article-loop header > :last-child {
+.blog .article-loop > div > :last-child {
   margin-bottom: 0;
 }
 

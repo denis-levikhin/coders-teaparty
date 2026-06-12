@@ -174,3 +174,21 @@ if ( ! function_exists( 'ct_add_nav_menu_description' ) ) {
 		return $item_output;
 	}
 }
+
+// >>> Set default featured image
+function set_default_featured_image( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+    if ( empty( $post_thumbnail_id ) ) {
+        $default_image_url = get_stylesheet_directory_uri() . '/media/no-image3.png';
+        $html = '<img src="' . esc_url( $default_image_url ) . '" class="wp-post-image" alt="Default Image"/>';
+    }
+    return $html;
+}
+add_filter( 'post_thumbnail_html', 'set_default_featured_image', 10, 5 );
+ 
+function set_default_featured_image_url( $url, $post_id ) {
+    if ( empty( get_post_thumbnail_id( $post_id ) ) ) {
+        $url = get_stylesheet_directory_uri() . '/media/no-image3.png';
+    }
+    return $url;
+}
+add_filter( 'default_post_thumbnail_url', 'set_default_featured_image_url', 10, 2 );

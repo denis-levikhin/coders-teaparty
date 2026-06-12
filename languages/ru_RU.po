@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Coders Teaparty v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-06-25 15:44+0800\n"
+"POT-Creation-Date: 2026-06-12 18:34+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: CodersTeaparty <oldteaowl2@gmail.com>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "__;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Bookmarks: \n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: archive-microblog.php:10
@@ -48,36 +48,36 @@ msgstr "К новым комментариям &rarr;"
 msgid "Comments are closed."
 msgstr "Комментарии закрыты."
 
-#: functions.php:20
+#: functions.php:23
 msgid "Main Website Menu (Header)"
 msgstr "Главное меню"
 
-#: functions.php:82
+#: functions.php:89
 msgid "Primary Sidebar"
 msgstr "Основной сайдбар"
 
-#: functions.php:108
+#: functions.php:115
 #, php-format
 msgid "By <span class=\"comment-meta comment-author\">%s</span>"
-msgstr ""
+msgstr "За авторством <span class=\"comment-meta comment-author\">%s</span>"
 
-#: functions.php:114
+#: functions.php:121
 msgid "Your comment is awaiting moderation."
 msgstr "Ваш комментарий ожидает модерации."
 
-#: functions.php:125
+#: functions.php:132
 msgid "Edit comment"
 msgstr "Редактировать комментарий"
 
-#: includes/functions.php:83
+#: includes/functions.php:27
 msgid "Home"
 msgstr "Домашняя страница"
 
-#: includes/functions.php:86
+#: includes/functions.php:30
 msgid "Articles"
 msgstr "Статьи"
 
-#: includes/functions.php:108
+#: includes/functions.php:52
 msgid "Search for: "
 msgstr "Поиск: "
 
@@ -116,3 +116,20 @@ msgstr "Последние посты"
 #: shortcodes/user-profiles.php:223
 msgid "This user did not write any posts yet."
 msgstr "Этот пользователь пока не писал статей."
+
+#: single-post.php:17
+#, php-format
+msgid "by %s"
+msgstr "за авторством %s"
+
+#: single-post.php:30 template-parts/article.php:36
+msgid "Tags"
+msgstr "Теги"
+
+#: template-parts/article.php:18
+msgid "No Title"
+msgstr "Без Названия"
+
+#: template-parts/article.php:48
+msgid "No tags"
+msgstr "Без тегов"
