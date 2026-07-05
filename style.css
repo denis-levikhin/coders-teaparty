@@ -571,7 +571,6 @@ nav.pagination .next {
 		background: #34305a;    
 		box-shadow: 2px 0px 7px darkcyan;
     }
-
 	
 	.content-area {  
 		margin: 0;	/* shrink margin intended for clouds shape divider */
@@ -579,10 +578,10 @@ nav.pagination .next {
 		padding: 4rem 2rem;
 	}
 
-	.blog .posts-list {
-		display: flex;
+	.blog .article-loop {
 		flex-direction: column;
 	}
+
     .mobile-menu-switch {
         margin: .5rem;
         margin-left: auto;
