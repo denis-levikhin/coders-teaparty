@@ -192,3 +192,9 @@ function set_default_featured_image_url( $url, $post_id ) {
     return $url;
 }
 add_filter( 'default_post_thumbnail_url', 'set_default_featured_image_url', 10, 2 );
+
+// >>> Filter the default except length to 20 words
+function set_default_excerpt_length( $length ) {
+	return 25;
+}
+add_filter( 'excerpt_length', 'set_default_excerpt_length', 999 );

@@ -342,40 +342,32 @@ html {
 }
 
 .blog .posts-list {
-    display: flex;
-	flex-direction: column;
-    gap: 1.5em;
-	min-height: 100%;
+	gap: .5em;
+	display: grid;
+	grid-auto-rows: 1fr;
 }
 
 .blog .article-loop {
-	display: flex;
-	align-items: center;
+	display: grid;
 	gap: 1em;
-	flex: 1 0 30%;
-}
-
-.blog .article-loop a:has(.wp-post-image) {
-  flex: 1 2 250px;
-  height: 100%;
-}
-
-.article-loop > div {
-  flex: 2 1 70%;
+	grid-template-columns: 1fr 3fr;
+	padding: 7px;
+	background: #e9fae4;
+	border-radius: 7px;
 }
 
 .article-loop .wp-post-image {
-  height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-  object-position: center;
+	height: 100%;
+	max-width: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 
 .blog .article-loop > div > :first-child {
-  margin-top: 0;
+	margin-top: 0;
 }
 .blog .article-loop > div > :last-child {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 /* Post tags: Single Post styles */
@@ -539,6 +531,13 @@ nav.pagination .next {
 	align-items: center;
 	text-align: center;
 }
+/* ============ DESKTOP ONLY STYLES ============ */
+@media screen AND (min-width: 1024px) {
+	.blog .article-loop a:has(.wp-post-image) {
+		height: 100%;
+		aspect-ratio: 1/1;
+	}
+}
 
 /* =============== TABLET STYLES =============== */
 @media screen AND (600px < width < 1024px) {
@@ -548,9 +547,24 @@ nav.pagination .next {
     	display: grid;
     	grid-template-columns: 1fr 2fr;
 	}
+
+	.blog .posts-list {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.blog .article-loop {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+
+	.article-loop .wp-post-image {
+		height: auto;
+		width: 100%;
+	}
 }
 
-/* =============== MOBILE STYLES =============== */
+/* =============== MOBILE STYLES ================ */
 @media screen AND (max-width: 600px){
 	body {
 		overflow: initial; /* no Vanta.js anyways */
@@ -578,8 +592,24 @@ nav.pagination .next {
 		padding: 4rem 2rem;
 	}
 
-	.blog .article-loop {
+	.blog .posts-list {
+		display: flex;
 		flex-direction: column;
+	}
+	
+	.blog .article-loop {
+		display: flex;
+		flex-direction: column-reverse;
+		margin-bottom: 1em;
+	}
+
+	.blog .article-loop p {
+		text-align: justify;
+	}
+
+	.article-loop .wp-post-image {
+		height: auto;
+		width: 100%;
 	}
 
     .mobile-menu-switch {
