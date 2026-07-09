@@ -349,25 +349,24 @@ html {
 }
 
 .blog .article-loop {
-	display: grid;
+	display: flex;
 	gap: 1em;
-	grid-template-columns: 1fr 3fr;
 	padding: 7px;
 	background: #e9fae4;
 	border-radius: 7px;
 }
 
 .article-loop .wp-post-image {
-	height: 100%;
-	max-width: 100%;
+	height: auto;
+	width: 100%;
 	object-fit: cover;
-	object-position: center;
+	aspect-ratio: 1/1;
 }
 
-.blog .article-loop > div > :first-child {
+.blog .article-loop > .blog-card-content > :first-child {
 	margin-top: 0;
 }
-.blog .article-loop > div > :last-child {
+.blog .article-loop > .blog-card-content > :last-child {
 	margin-bottom: 0;
 }
 
@@ -537,6 +536,19 @@ nav.pagination .next {
 	.blog .article-loop a:has(.wp-post-image) {
 		height: 100%;
 		aspect-ratio: 1/1;
+		flex: 1 1 25%;
+	}
+	
+	.blog .article-loop .blog-card-content {
+		flex: 1 1 75%;
+        overflow: hidden;
+	}
+
+	.blog .article-loop .blog-card-content h3 > a {
+		white-space: nowrap;
+		overflow: hidden;
+		max-width: 100%;
+		text-overflow: ellipsis;
 	}
 }
 

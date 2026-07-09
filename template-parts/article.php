@@ -12,15 +12,12 @@
             get_the_post_thumbnail( null, 'medium_large' )
         );
     ?>
-    <div>
+    <div class="blog-card-content">
         <?php
             //-- Post Title --//
             $post_title = ! empty( get_the_title() ) ? get_the_title() : __( 'No Title' , 'coders-teaparty' ) ;
             $post_title_attribute = esc_attr( $post_title );
             printf( '<h3><a href="%s" title="%s">%s</a></h3>', get_the_permalink(), $post_title_attribute, $post_title );
-
-            //-- Post Desсription --//
-            the_excerpt();
             
             //-- Post Tags --//
             $tag_args = array(
@@ -47,6 +44,9 @@
                 echo '<span class="no-tags">' . __( 'No tags', 'coders-teaparty' ) . '</span>';
             }
             echo '</div>';
+
+            //-- Post Desсription --//
+            the_excerpt();
         ?>
     </div>
 </article>
