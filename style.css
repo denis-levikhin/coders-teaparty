@@ -345,6 +345,7 @@ html {
 	gap: .5em;
 	display: grid;
 	grid-auto-rows: 1fr;
+	grid-auto-columns: 100%;
 }
 
 .blog .article-loop {
