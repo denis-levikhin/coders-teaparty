@@ -38,7 +38,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 	--link-color: steelblue; 
 	--mobile-header-height: 4rem;
 	/* darjilling color */
-	--primary-color: #f0e7e0;
+	--primary-color: #34315b;
 	/* matcha tea color */
 	--secondary-color: #AFC696;
 	/* raspberry-like */
@@ -237,13 +237,12 @@ form input[type="submit"]:hover {
 }
 
 blockquote {
-	color: gray;
-	display: block;  
+display: block;
 	border-left: 2px solid var(--link-color);
 	margin: 1.25em 0;
 	padding: 0.5em 10px;
 	position: relative;
-	background: linear-gradient(90deg, var(--primary-color), transparent);
+	background: hsl(from var(--secondary-color, transparent) h s l / 0.3)
 }
   
 blockquote > p {
@@ -348,11 +347,15 @@ html {
 	grid-auto-columns: 100%;
 }
 
+.blog .content-area {
+	background-color: #fcf3e3;
+}
+
 .blog .article-loop {
 	display: flex;
 	gap: 1em;
 	padding: 7px;
-	background: #e9fae4;
+	background-color: white;
 	border-radius: 7px;
 }
 

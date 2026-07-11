@@ -95,41 +95,15 @@
 	text-shadow: 1px 1px 2px black;
 }
 
-.sidebar-level-1::after {
-	content: "";
-	background-image: url("../media/faded-slant-top.svg");
-	height: 4rem;
-	width: 100%;
-	display: block;
-	position: absolute;
-	left: 0;
-	bottom: -4rem;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
-.sidebar-level-2::after {
-	content: "";
-	background-image: url("../media/faded-slant-bottom.svg");
-	height: 4rem;
-	width: 100%;
-	display: block;
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
 .sidebar-level-2 {
-	background-color: var(--primary-color);
 	padding: 2rem;
 }
 
 .sidebar-level-2 h3 {
-  font-family: var(--default-font-family, 'Arial');
+  font-family: "Poiret One";
   font-size: 18px;
   font-weight: 700;
+  color: var(--secondary-color, white);
 }
 
 .website-main-navigation a::before {
