@@ -2,7 +2,6 @@
 
 require_once get_stylesheet_directory() . '/includes/functions.php';
 require_once get_stylesheet_directory() . '/includes/functions-user-profiles.php';
-require_once get_stylesheet_directory() . '/shortcodes/user-profiles.php';
 
 /**
  * General theme functions, admin menus and configuration.
@@ -71,7 +70,7 @@ function codersteaparty_enqueue_scripts_and_styles() {
 		wp_enqueue_style( 'microblog_styles' );
   	}
 	
-	if ( is_singular( 'ct-user-profile' ) ) {
+	if ( is_author() ) {
 		wp_enqueue_style( 'user_profile_styles' );
   	}
 	

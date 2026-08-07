@@ -2,7 +2,6 @@
   border-radius: calc(7px + 0.15vw);
   overflow: hidden;
   border: 1px solid black;
-  height: min-content;
 }
 
 .user-profile-block-header {
@@ -71,7 +70,7 @@
   margin: 0;
 }
 
+.user-latest-comments .comments-date,
 .user-profile-latest-articles .post-date {
-  font-style: italic;
-  color: gray;
+  font-weight: 500; /* semi-bold */
 }
