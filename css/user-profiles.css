@@ -23,7 +23,7 @@
   margin: 0;
 }
 
-.user-profile-block-header .user-position {
+.user-profile-block-header .user-role {
   font-size: .75em;
   border: 1px solid black;
   border-radius: 2px;
@@ -40,7 +40,7 @@
   text-shadow: 0 0 5px var(--primary-color);
 }
 
-.user-profile-block-header.with-cover .user-position {
+.user-profile-block-header.with-cover .user-role {
   background-color: var(--secondary-color);
 }
 

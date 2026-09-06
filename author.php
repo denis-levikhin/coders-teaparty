@@ -4,6 +4,8 @@
   <section class="content-area content-thin">
     <article class="article-full masonry-grid">
       <?php
+        $page_lang = substr( get_locale(), 0, 2 ); // only lang code, en from en_US, ru from ru_RU, no polylang dependency
+
         // TODO: Rewrite in OOP as a UserProfileBlock
         $classes = 'user-profile-block user-profile-general-info masonry-item ';
         $profile_user_id = get_the_author_meta( 'ID' ); 
@@ -11,7 +13,7 @@
         $user_meta = get_user_meta( $profile_user_id );
         $user_nicename = get_the_author_meta( 'nickname' );
         $user_bio = get_the_author_meta( 'description' );
-        $user_position = get_the_author_meta( 'position' ) ?: __( 'Dude', 'coders-teaparty' );
+        $user_role = wp_strip_all_tags( get_the_author_meta( 'role-' . $page_lang ) ?: __( 'Dude', 'coders-teaparty' ) );
         $user_cover_image_id = get_the_author_meta( 'cover' );
         $section_headers_color = get_the_author_meta( 'section_headers_color' ) ?: 'var(--secondary-color)';
         $user_cover_image_src = wp_get_attachment_image_src( $user_cover_image_id, 'large' );
@@ -34,7 +36,11 @@
           ?>
             <span>
               <h3 class='user-name'><?= $user_nicename ?></h3>
-              <span class='user-position'><?= $user_position ?></span>
+              <?php
+                if ( user_can( $profile_user_id, 'edit_posts' ) ) {
+                  echo "<span class='user-role'>$user_role</span>";
+                }
+              ?>
             </span>
           </div>
         
@@ -47,7 +53,7 @@
 
       <?php 
         $classes = 'user-profile-block user-profile-picture masonry-item ';
-        $user_status = get_the_author_meta( 'motd' ); // status is a reserved keyword, so using 'motd'
+        $user_status = wp_strip_all_tags( get_the_author_meta( 'motd-' . $page_lang ) ); // status is a reserved keyword, so using 'motd'
       ?>
       <!-- Profile Picture and Motd Block -->
       <section class="<?= $classes ?>">
@@ -68,12 +74,12 @@
         $classes = 'user-profile-block user-profile-survey masonry-item ';
         // retrieve LABEL of the field, cause default get_the_author_meta will only get name like "infj", not "Mediator"
         if( function_exists( 'get_field' /* ACF support */) ) {
-          $infp = get_field( 'infp', 'user_' . $profile_user_id );
+          $infp = wp_strip_all_tags( get_field( 'infp-' . $page_lang, 'user_' . $profile_user_id ) );
         } else {
-          $infp = get_the_author_meta( 'infp' );
+          $infp = wp_strip_all_tags( get_the_author_meta( 'infp-' . $page_lang ) );
         }
-        $writing_preferences = get_the_author_meta( 'writing_preferences' );
-        $social_links = get_the_author_meta( 'social_links' );
+        $writing_preferences = wp_strip_all_tags( get_the_author_meta( 'writing_preferences-' . $page_lang ) );
+        $social_links = wp_kses_post( get_the_author_meta( 'social_links-' . $page_lang ) );
       ?>
       <!-- Survey Block -->
       <section class="<?= $classes ?>">
@@ -88,16 +94,28 @@
                 <span class='survey-row-value'><?= $infp ?></span>
               </span>
             <?php } ?>
-            <?php if( !empty( $writing_preferences ) ) { ?>
+            <?php if( !empty( $writing_preferences ) AND user_can( $profile_user_id, 'edit_posts' ) ) { ?>
               <span class="survey-row">
                 <span class="survey-row-title"><?= __( 'Writing Preferences:', 'coders-teaparty' ) ?></span>
                 <span class='survey-row-value'><?= $writing_preferences ?></span>
               </span>
             <?php } ?>
-            <?php if( !empty( $social_links ) ) { ?>
+            <?php if( !empty( $social_links ) ) {
+              $social_links_string = '';
+              $social_links = explode( ',', $social_links ); // guaranteed to be an array
+
+              for ( $i = 0; $i < count( $social_links ); $i++ ) {
+                $matches = '';
+                $markdown_style_link = "\[([^]]*)\]\(((?:http[s]?:\/\/.)?(?:www\.)?[-a-zA-Z0-9@%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))\)";
+                if ( preg_match( "/$markdown_style_link/", $social_links[ $i ], $matches ) ) { // valid?
+                  $social_links_string .= "<a href=" . $matches[2] . ">" . $matches[1] . "</a>";
+                  $social_links_string .= ( $i != count( $social_links ) - 1 ) ? ', ' : '';
+                }
+              }
+            ?>
               <span class="survey-row">
                 <span class="survey-row-title"><?= __( 'Social Links:', 'coders-teaparty' ) ?></span>
-                <span class='survey-row-value'><?= $social_links ?></span>
+                <span class='survey-row-value'><?= $social_links_string ?></span>
               </span>
             <?php } ?>
             <?php
