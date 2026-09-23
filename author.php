@@ -14,8 +14,10 @@
         $user_nicename = get_the_author_meta( 'nickname' );
         $user_bio = get_the_author_meta( 'description' );
         $user_role = wp_strip_all_tags( get_the_author_meta( 'role-' . $page_lang ) ?: __( 'Dude', 'coders-teaparty' ) );
-        $user_cover_image_id = get_the_author_meta( 'cover' );
-        $section_headers_color = get_the_author_meta( 'section_headers_color' ) ?: 'var(--secondary-color)';
+        //cover image is dependant on language to create effectively different profile pages for different langs
+        $user_cover_image_id = get_the_author_meta( 'cover-' . $page_lang );
+        //section header color is dependant on language for the same reason as cover image
+        $section_headers_color = get_the_author_meta( 'section_headers_color-' . $page_lang ) ?: 'var(--secondary-color)';
         $user_cover_image_src = wp_get_attachment_image_src( $user_cover_image_id, 'large' );
         $user_cover_image_src_attr = ! empty( $user_cover_image_src ) ? $user_cover_image_src[0] : '';
         if( empty( $user_bio ) ) {
@@ -38,7 +40,7 @@
               <h3 class='user-name'><?= $user_nicename ?></h3>
               <?php
                 if ( user_can( $profile_user_id, 'edit_posts' ) ) {
-                  echo "<span class='user-role'>$user_role</span>";
+                  echo "<span class='user-role' style='background-color: $section_headers_color'>$user_role</span>";
                 }
               ?>
             </span>
