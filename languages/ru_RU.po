@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Coders Teaparty v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2026-06-12 18:34+0300\n"
+"POT-Creation-Date: 2026-09-10 02:51+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: CodersTeaparty <oldteaowl2@gmail.com>\n"
@@ -28,6 +28,54 @@ msgstr ""
 msgid "Funny random thoughts, music and inspiration strikes are posted here. "
 msgstr "Случайные мысли в три часа ночи, музыка, и патчноуты. "
 
+#: author.php:16
+msgid "Dude"
+msgstr "Чувак"
+
+#: author.php:22 author.php:127
+msgid "This user have not shared anything about themselves yet."
+msgstr "Этот пользователь пока ничего о себе не рассказал."
+
+#: author.php:48
+msgid "Bio:"
+msgstr "Био:"
+
+#: author.php:88
+msgid "Survey"
+msgstr "Анкета"
+
+#: author.php:93
+msgid "INFP-type:"
+msgstr "INFP-тип:"
+
+#: author.php:99
+msgid "Writing Preferences:"
+msgstr "Пишу о:"
+
+#: author.php:117
+msgid "Social Links:"
+msgstr "Другие странички:"
+
+#: author.php:142
+msgid "Latest posts"
+msgstr "Последние посты"
+
+#: author.php:165
+msgid "This user did not write any posts yet."
+msgstr "Этот пользователь пока не писал статей."
+
+#: author.php:180
+msgid "Latest Comments"
+msgstr "Последние комментарии"
+
+#: author.php:197
+msgid "in reply to"
+msgstr "в ответ на"
+
+#: author.php:203
+msgid "This user did not write any comments yet."
+msgstr "Этот пользователь пока не писал комментариев."
+
 #: comments.php:13
 msgid "Comments"
 msgstr "Комментарии"
@@ -48,26 +96,30 @@ msgstr "К новым комментариям &rarr;"
 msgid "Comments are closed."
 msgstr "Комментарии закрыты."
 
-#: functions.php:23
+#: functions.php:22
 msgid "Main Website Menu (Header)"
 msgstr "Главное меню"
 
-#: functions.php:89
+#: functions.php:88
 msgid "Primary Sidebar"
 msgstr "Основной сайдбар"
 
-#: functions.php:115
+#: functions.php:114
 #, php-format
 msgid "By <span class=\"comment-meta comment-author\">%s</span>"
 msgstr "За авторством <span class=\"comment-meta comment-author\">%s</span>"
 
-#: functions.php:121
+#: functions.php:120
 msgid "Your comment is awaiting moderation."
 msgstr "Ваш комментарий ожидает модерации."
 
-#: functions.php:132
+#: functions.php:131
 msgid "Edit comment"
 msgstr "Редактировать комментарий"
+
+#: includes/functions-user-profiles.php:69
+msgid "View User Profile"
+msgstr "Посмотреть профиль"
 
 #: includes/functions.php:27
 msgid "Home"
@@ -81,48 +133,12 @@ msgstr "Статьи"
 msgid "Search for: "
 msgstr "Поиск: "
 
-#: shortcodes/user-profiles.php:24
-msgid "Dude"
-msgstr "Чувак"
-
-#: shortcodes/user-profiles.php:31 shortcodes/user-profiles.php:162
-msgid "This user have not shared anything about themselves yet."
-msgstr "Этот пользователь пока ничего о себе не рассказал."
-
-#: shortcodes/user-profiles.php:50
-msgid "Bio:"
-msgstr "Био:"
-
-#: shortcodes/user-profiles.php:135
-msgid "Survey"
-msgstr "Анкета"
-
-#: shortcodes/user-profiles.php:140
-msgid "INFP-type:"
-msgstr "INFP-тип:"
-
-#: shortcodes/user-profiles.php:146
-msgid "Writing Preferences:"
-msgstr "Пишу о:"
-
-#: shortcodes/user-profiles.php:152
-msgid "Social Links:"
-msgstr "Другие странички:"
-
-#: shortcodes/user-profiles.php:203
-msgid "Latest posts"
-msgstr "Последние посты"
-
-#: shortcodes/user-profiles.php:223
-msgid "This user did not write any posts yet."
-msgstr "Этот пользователь пока не писал статей."
-
-#: single-post.php:17
+#: single-post.php:15
 #, php-format
 msgid "by %s"
 msgstr "за авторством %s"
 
-#: single-post.php:30 template-parts/article.php:36
+#: single-post.php:28 template-parts/article.php:32
 msgid "Tags"
 msgstr "Теги"
 
@@ -130,6 +146,6 @@ msgstr "Теги"
 msgid "No Title"
 msgstr "Без Названия"
 
-#: template-parts/article.php:48
+#: template-parts/article.php:44
 msgid "No tags"
 msgstr "Без тегов"

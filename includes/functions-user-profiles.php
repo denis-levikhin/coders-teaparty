@@ -1,9 +1,10 @@
 <?php 
 
-// >>> Remove user profile fields not fitting the website theme or bloat
+// >>> Custom styles for admin user profile page
 if( ! function_exists( 'ct_remove_fields_from_userprofile' ) ) {
     function ct_remove_fields_from_userprofile(){
-        echo "<style>
+        // Remove user profile fields not fitting the website theme or bloat
+        echo "<style id='remove-bloat'>
                 .user-first-name-wrap,
                 .user-admin-color-wrap,
                 .user-display-name-wrap,
@@ -14,6 +15,38 @@ if( ! function_exists( 'ct_remove_fields_from_userprofile' ) ) {
                     display: none; 
                 }
             </style>";
+
+        // Improve custom field visuals
+        echo "<style id='custom-styling'>
+                .wp-admin:not(.mobile) .acf-field.neat-linebreak { 
+                    display: flex;
+                    flex-direction: column;
+                    & > td {
+                        padding: 0 !important;
+                        width: 40% !important;
+                    }
+                }
+            </style>";
+
+        // Hide fields in wrong language
+        echo "<style id='language-specific-layout'>
+                .wp-admin.pll-lang-en .acf-field[data-name$='-ru'],
+                .wp-admin.pll-lang-ru .acf-field[data-name$='-en'],
+                .wp-admin.pll-lang-en .user-description-wrap div[lang='ru-RU'],
+                .wp-admin.pll-lang-ru .user-description-wrap div[lang='en-US'] { 
+                    display: none;
+                }
+            </style>";
+            
+        // Hide editor-related fields for subscribers and members
+        if ( ! current_user_can( 'edit_posts' ) ) {
+            echo "<style id='language-specific-layout'>
+                    .acf-field[data-name*='writing_preferences'],
+                    .acf-field[data-name*='role'] { 
+                        display: none !important;
+                    }
+                </style>";
+        }
     }
 
     add_action( 'admin_head-user-edit.php', 'ct_remove_fields_from_userprofile' );
@@ -29,106 +62,35 @@ if( ! function_exists( 'ct_remove_admin_color_scheme_picker' ) ){
     add_action( 'admin_head-profile.php', 'ct_remove_admin_color_scheme_picker' );
 }
 
-// >>> Register user profiles as custom post type to allow editing it from admin
-if( ! function_exists( 'ct_register_user_profiles_post_type' ) ) {
-	function ct_register_user_profiles_post_type(){
-		register_post_type( 
-			'ct-user-profile', 
-			array(
-				'label' => 'User Profiles',
-				'description' => 'Auto-generated user profile pages, contains only meta to pull the data from WordPress user profile pages',
-				'public' => TRUE,
-				'has_archive' => 'dudes',
-				'supports' => array(
-					'title', 
-					'editor',
-					'thumbnail'					
-				),
-				'rewrite' => array(
-					'slug' => 'dudes',
-					'with_front' => FALSE,
-				),        
-				'menu_icon' => 'dashicons-id',
-			) 
-		);
-	}
+// >>> Add user profile link to profile editing screen to quickly view changes
+if( ! function_exists( 'ct_profile_link' ) ){
+    function ct_profile_link( $profile_user ) {
+        $link = get_author_posts_url( $profile_user->ID, $profile_user->user_nicename );
+        echo "<p><a href='$link' class='button' target='_blank'>" . __( 'View User Profile', 'coders-teaparty' ) . "</a></p>";
+    }
 
-    add_action( 'init', 'ct_register_user_profiles_post_type' );
+    add_action( 'show_user_profile', 'ct_profile_link' );
+    add_action( 'edit_user_profile', 'ct_profile_link' );
 }
 
 
-// >>> Create new front-end profile page when new user is created
-if( ! function_exists( 'ct_create_user_profile_with_user' ) ){
-	function ct_create_user_profile_with_user( $user_id, $userdata ) {
-		$postarr = array(
-			'post_title' => $userdata['first_name'] ?: $userdata['user_login'],
-			'post_content' => '[user_profile_general][user_profile_picture][user_profile_latest_articles][user_profile_survey]',
-			'post_status' => 'publish',
-			'post_type' => 'ct-user-profile',
-			'meta_input' => array(
-				'profile_user_id' => $user_id
-			),
-		);
-		wp_insert_post( $postarr );
-	}
+// >>> Change 'author' to 'user' in user profile URL
+if( ! function_exists( 'ct_filter_author_link' ) ){
 
-    add_action( 'user_register', 'ct_create_user_profile_with_user', 10, 2 );
-} 
+    function ct_filter_author_link( $link, $author_id, $author_nicename ) {
+        $user_language = function_exists( 'pll_current_language') ? pll_current_language() : get_locale();
+        $user_language = substr( $user_language, 0, 2 ) === "ru" ? '/ru': ''; // use user's preferred lang in link
+        return home_url( "$user_language/user/" ) . $author_nicename;
+    }
 
-// >>> Delete user profile page if a user with the same username deleted
-if( ! function_exists( 'ct_remove_user_profile_with_user' ) ){
-	function ct_delete_user_profile_with_user( $user_id ) {
-		$query_args = array(
-			'post_type' => 'ct-user-profile',
-			'meta_key' => 'profile_user_id',
-			'meta_value' => $user_id,
-			'no_found_rows' => TRUE, /* skip counting rows for performance */
-		);
-		$query = new WP_Query( $query_args );
-		
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-				wp_delete_post( get_the_ID() );
-			}
-		} 
-		wp_reset_postdata();
-	}
-
-    add_action( 'delete_user', 'ct_delete_user_profile_with_user', 10, 2 );
+    add_filter( 'author_link', 'ct_filter_author_link', 10, 3 );
 }
 
-// >>> Prevent article markup for user profiles 
-if( ! function_exists( 'ct_disable_article_markup_for_profiles' ) ){ 
-	function ct_disable_article_markup_for_profiles(){
-		if( is_singular( 'ct-user-profile' ) ) {
-			remove_filter( 'the_content', 'wpautop' );
-		}
-	}
-
-	add_action( 'template_redirect', 'ct_disable_article_markup_for_profiles' );
-}
-
-/**
- * >>> Get user profile front end url
- * @return string user profile url or FALSE
-*/
-if( ! function_exists( 'ct_get_user_profile_page_url' ) ){ 
-	function ct_get_user_profile_page_url( $user_id ){
-		if ( empty( $user_id ) OR $user_id < 0 ) {
-			return -1;
-		}
-		$args = array(
-			'post_type' => 'ct-user-profile',
-			'post_status' => 'publish',
-			'meta_key' => 'profile_user_id',
-			'meta_value' => $user_id,
-		);
-		$query = new WP_Query( $args );
-		if ( ! empty( $query->posts )  ) {
-        	return get_permalink( $query->posts[0] ); // only count for the first post
-        } else {
-			return FALSE;
-		}
-	}
+// >>> Change 'author' to 'user' in WP rewrite rules so it knows about new URLs
+if( ! function_exists( 'ct_rewrite_filter_author_link' ) ){
+    function ct_rewrite_filter_author_link() {
+        global $wp_rewrite;
+        $wp_rewrite->author_base = 'user';
+    }
+    add_action( 'init', 'ct_rewrite_filter_author_link' );
 }

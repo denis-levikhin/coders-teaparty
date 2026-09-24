@@ -9,7 +9,7 @@
             <h2><?php the_title(); ?></h2>
             <?php
               $author_id = get_post_field ( 'post_author', get_the_ID() );
-              $author_profile_page_url = ct_get_user_profile_page_url( $author_id );
+              $author_profile_page_url = esc_url( get_author_posts_url( $author_id ) );
             ?>
             <?php
               echo 'By: ';
