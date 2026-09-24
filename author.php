@@ -6,11 +6,10 @@
       <?php
         $page_lang = substr( get_locale(), 0, 2 ); // only lang code, en from en_US, ru from ru_RU, no polylang dependency
 
-        // TODO: Rewrite in OOP as a UserProfileBlock
-        $classes = 'user-profile-block user-profile-general-info masonry-item ';
         $profile_user_id = get_the_author_meta( 'ID' ); 
         $user_obj = get_user_by( 'id', $profile_user_id );
         $user_meta = get_user_meta( $profile_user_id );
+
         $user_nicename = get_the_author_meta( 'nickname' );
         $user_bio = get_the_author_meta( 'description' );
         $user_role = wp_strip_all_tags( get_the_author_meta( 'role-' . $page_lang ) ?: __( 'Dude', 'coders-teaparty' ) );
@@ -23,6 +22,8 @@
         if( empty( $user_bio ) ) {
           $user_bio = __( 'This user have not shared anything about themselves yet.', 'coders-teaparty' );
         }
+
+        $classes = 'user-profile-block user-profile-general-info masonry-item ';
       ?>
       <!-- Bio Block -->
       <section class="<?= $classes; ?>">
@@ -65,7 +66,7 @@
               <div>
                 <?php
                   echo get_avatar( $profile_user_id, 512 );
-                  echo ! empty( $user_status ) ? "<span class='user-status'>\"$user_status\"</span>" : '';
+                  echo ! empty( $user_status ) ? "<span class='user-status'>$user_status</span>" : '';
                 ?>
               </div>
             </div>
@@ -108,10 +109,13 @@
 
               for ( $i = 0; $i < count( $social_links ); $i++ ) {
                 $matches = '';
-                $markdown_style_link = "\[([^]]*)\]\(((?:http[s]?:\/\/.)?(?:www\.)?[-a-zA-Z0-9@%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))\)";
-                if ( preg_match( "/$markdown_style_link/", $social_links[ $i ], $matches ) ) { // valid?
-                  $social_links_string .= "<a href=" . $matches[2] . ">" . $matches[1] . "</a>";
-                  $social_links_string .= ( $i != count( $social_links ) - 1 ) ? ', ' : '';
+                $markdown_style_link = "\[([^]]*)\]\(([^)]*)\)";
+                if ( preg_match( "/$markdown_style_link/", $social_links[ $i ], $matches ) ) { // is a properly formatted link?
+                $social_links_string = $matches[1]; // add text in case link is invalid
+                if ( ! empty( $matches[2] ) AND preg_match( "/^(https:|http:|www\.)\S*/", $matches[2] ) > 0 ) { // is a valid link?
+                    $social_links_string = "<a href=" . $matches[2] . ">" . $matches[1] . "</a>";
+                    $social_links_string .= ( $i != count( $social_links ) - 1 ) ? ', ' : '';
+                  }
                 }
               }
             ?>
@@ -134,6 +138,7 @@
       </section>
 
       <?php
+      if ( user_can( $profile_user_id, 'edit_posts' ) ) { // if user cannot write posts, this block will always be empty
         $output = '';
         $classes = 'user-profile-block user-profile-latest-articles masonry-item ';
       ?>
@@ -170,6 +175,9 @@
           </div>
         </div>
       </section>
+      <?php
+      } // closing permissions check for latest post block
+      ?>
 
       <?php
         $output = '';
