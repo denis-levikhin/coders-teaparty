@@ -111,9 +111,8 @@
                 $matches = '';
                 $markdown_style_link = "\[([^]]*)\]\(([^)]*)\)";
                 if ( preg_match( "/$markdown_style_link/", $social_links[ $i ], $matches ) ) { // is a properly formatted link?
-                $social_links_string = $matches[1]; // add text in case link is invalid
-                if ( ! empty( $matches[2] ) AND preg_match( "/^(https:|http:|www\.)\S*/", $matches[2] ) > 0 ) { // is a valid link?
-                    $social_links_string = "<a href=" . $matches[2] . ">" . $matches[1] . "</a>";
+                  if ( ! empty( $matches[2] ) AND preg_match( "/^(https:|http:|www\.)\S*/", $matches[2] ) > 0 ) { // is a valid link?
+                    $social_links_string .= "<a href=" . $matches[2] . ">" . $matches[1] . "</a>";
                     $social_links_string .= ( $i != count( $social_links ) - 1 ) ? ', ' : '';
                   }
                 }
