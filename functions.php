@@ -7,7 +7,6 @@ require_once get_stylesheet_directory() . '/includes/functions-user-profiles.php
  * General theme functions, admin menus and configuration.
  * Add your reusable functions not related to theme configuration to /includes/functions.php
  * 
- * Also, I wish all mom's sofa-based hackers to suck a humongous russian dick
 */
 
 // >> Indicate supported features
